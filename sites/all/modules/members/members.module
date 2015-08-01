@@ -18,60 +18,64 @@ function members_form_members_node_form_alter(&$form, &$form_state, $form_id) {
   unset($form['field_gender']['und']['#options']['_none']);
 drupal_set_title(t('Members'));
 
-
 if (count($form['field_church_']['und']['#options']) > 1){
    $form['field_church_']['und']['#required'] = TRUE;
  }
 else{
-   $form['field_church_']['und']['#required'] = FALSE;
+   //$form['field_church_']['und']['#required'] = FALSE;
+ unset($form['field_church_']);
  }
 
-
-
-
-
-
 return $form;
 }
 
-function members_form_group_members_node_form_alter(&$form, &$form_state, $form_id) {
-drupal_set_title(t('Fellowship'));
-
-return $form;
-}
 
 
 function members_form_prospects_node_form_alter(&$form, &$form_state, $form_id) {
 unset($form['field_gender']['und']['#options']['_none']);
 drupal_set_title(t('Prospects'));
 
+if (count($form['field_church_']['und']['#options']) > 1){
+   $form['field_church_']['und']['#required'] = TRUE;
+ }
+else{
+   //$form['field_church_']['und']['#required'] = FALSE;
+ unset($form['field_church_']);
+ }
+
 return $form;
 }
 
-function members_form_discipleship_node_form_alter(&$form, &$form_state, $form_id) {
-drupal_set_title(t('Discipleship'));
-return $form;
-}
 
 function members_form_visitors_node_form_alter(&$form, &$form_state, $form_id) {
   unset($form['field_gender']['und']['#options']['_none']);
   unset($form['field_visitor_decision']['und']['#options']['_none']);
 drupal_set_title(t('Visitors'));
 
+if (count($form['field_church_']['und']['#options']) > 1){
+   $form['field_church_']['und']['#required'] = TRUE;
+ }
+else{
+  // $form['field_church_']['und']['#required'] = FALSE;
+   unset($form['field_church_']);
+ }
+
 return $form;
 }
 
 function members_form_report_node_form_alter(&$form, &$form_state, $form_id) {
 drupal_set_title(t('Service Report'));
+if (count($form['field_church_']['und']['#options']) > 1){
+   $form['field_church_']['und']['#required'] = TRUE;
+ }
+else{
+  // $form['field_church_']['und']['#required'] = FALSE;
+   unset($form['field_church_']);
+ }
 
 return $form;
 }
 
-function members_form_role_node_form_alter(&$form, &$form_state, $form_id) {
-drupal_set_title(t('Ministry'));
-
-return $form;
-}
 
 function members_form_family_members_node_form_alter(&$form, &$form_state, $form_id) {
 drupal_set_title(t('Family'));
@@ -280,25 +284,16 @@ $form['to']['views_send_to_mail']['#options']['field_memail_pos_5'] = 'Email';
 
 
 //Role send mail form
-function members_form_views_form_members_ministry_alter(&$form, &$form_state, $form_id){
-unset($form['to']['views_send_tokens']['value']['counter_pos_2']);
-
-             unset($form['to']['views_send_tokens']['value']['node_title_pos_3']);
-             unset($form['to']['views_send_tokens']['value']['nid_pos_4']);
-             unset($form['to']['views_send_tokens']['value']['field_name_pos_5']);
-             unset($form['to']['views_send_tokens']['value']['field_surname_pos_6']);
-             unset($form['to']['views_send_tokens']['value']['history_timestamp_pos_7']);
-             unset($form['to']['views_send_tokens']['value']['field_tel_no__pos_8']);
-             unset($form['to']['views_send_tokens']['value']['field_memail_pos_9']);
-             unset($form['to']['views_send_tokens']['value']['path_pos_10']);
-             unset($form['to']['views_send_tokens']['value']['comments_link_pos_11']);
-unset($form['to']['views_send_tokens']['value']['node_comment_statistics_comment_count_pos_12']);
-             unset($form['to']['views_send_tokens']['value']['node_new_comments_pos_13']);
-             unset($form['to']['views_send_tokens']['value']['nid_pos_14']);
-             unset($form['to']['views_send_tokens']['value']['nid_pos_15']);
-             unset($form['to']['views_send_tokens']['value']['ops_pos_16']);
-
-$form['to']['views_send_to_name']['#options']['node_title_pos_3']['#default_value'] = TRUE;
+function members_form_views_form_role_page_1_alter(&$form, &$form_state, $form_id){
+unset($form['to']['views_send_to_name']['#options']['counter_pos_1']);
+unset($form['to']['views_send_to_name']['#options']['field_memail_pos_4']);
+unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_3']);
+unset($form['to']['views_send_to_name']['#options']['field_ministry_pos_5']);
+unset($form['to']['views_send_to_name']['#options']['field_description_pos_6']);
+unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
+unset($form['to']['views_send_to_name']['#options']['nid_pos_8']);
+unset($form['to']['views_send_to_name']['#options']['nid_pos_8']);
+unset($form['to']['views_send_to_name']['#options']['field_church__pos_9']);
 $form['to']['views_send_to_name']['#options']['node_field_data_field_member_to_role_title_pos_2'] = 'Name';
 $form['to']['views_send_to_name']['#description'] = 'Select name option';
 $form['to']['views_send_to_name']['#title'] = "Recipient's name";
@@ -335,7 +330,7 @@ function members_form_views_form_group_chnage_page_alter(&$form, &$form_state, $
 function members_form_comment_node_visitors_form_alter(&$form, &$form_state, $form_id){
 // unset($form['author']['_author']['#title']);
 // unset($form['author']['_author']['#markup']);
-$form['feedback']['#markup'] = '<div class="feeback"><ul><li>Reasons for absence from the service</li><li>Follow up activities and feddback</li><li>Prayer requests</li><li>Needs and challenges</li><li>Other comments that will aid the assimilation of this visitor(guests)</li></ul></div>';
+$form['feedback']['#markup'] = '<div class="feeback"><ul><li>Reasons for absence from the service</li><li>Follow up activities and feddback</li><li>Prayer requests</li><li>Needs and challenges</li><li>Other comments that will aid the assimilation of this visitor(guest)</li></ul></div>';
 $form['feedback']['#weight'] = '-3';
 return $form;
 }
@@ -350,20 +345,19 @@ drupal_set_title(t('Log into FlockState'));
 $form['name']['#placeholder'] = decode_entities('&#xf007;');
 $form['pass']['#placeholder'] = decode_entities('&#xf084;');
 $form['reset']['#markup'] = '<p>Forgot your password? <a href="/user/password">Reset it</a></p>';
+return $form;
 }
 
 function members_form_user_register_form_alter(&$form, &$form_state, $form_id) {
   $form['account']['read']['#markup'] = '<div class="reado"><p class="read">Enter details of Account Administrator in the form below</p></div>';
   $form['account']['read']['#weight'] = -12;
-  if(user_is_anonymous()) {
-      $form['account']['#title'] = "Administrator's Account";
-      $form['actions']['submit']['#value'] = 'Sign Up';
-  }
-
   $form['account']['notify']['#default_value'] = TRUE;
-  $form['account']['field_full_name'] = $form['field_full_name'];
+$form['account']['field_full_name'] = $form['field_full_name'];
   $form['account']['field_full_name']['#weight'] = -15;
   unset($form['field_full_name']);
+  if(user_is_anonymous()) {
+      $form['account']['#title'] = "Administrator's Account";
+  }
   return $form;
 }
 
@@ -477,17 +471,6 @@ function members_form_alter(&$form, &$form_state, $form_id) {
 if($form_id == 'visitors_attendance_node_form'){
   $form['field_visitor'][LANGUAGE_NONE]['add_more']['#value'] = 'Add Visitors';
 }
-}
-
-function members_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
-if(count($form['field_church_']['und']['#options']) == 1){
-  unset($form['field_church_']);
-}
-
-if(($form['account']['roles']['#default_value'][0] == 2) && ($form['account']['roles']['#default_value'][1] == 10)){
-   unset($form['field_church_']);
-}
-
 return $form;
 }
 
@@ -501,7 +484,18 @@ return $form;
   $form['date_filter_2']['value']['#date_format'] = 'm/d/Y';
 }
 
+function members_form_user_profile_form_alter(&$form, &$form_state, $form_id){
+if(count($form['field_church_']['und']['#options']) < 2){
+unset($form['field_church_']);
+}
+if(($form['account']['roles']['#default_value'][0] == 2) && ($form['account']['roles']['#default_value'][1] == 10)){
+   unset($form['field_church_']);
+}
 
+return $form;
+}
+
+// Rules queue mail
 /**
 * Implements hook_cron_queue_info().
 */
@@ -581,85 +575,14 @@ $queue = DrupalQueue::get('members_queue_notify');
 $queue->createItem($params);
 }
 
-/**
- * Implements hook_init()
- */
-function members_init() {
-    // kpr('token_info()');
-    //Customize modal window
-    drupal_add_js(array(
-    'members-modal' => array(
-      'modalSize' => array(
-        'type' => 'fixed',
-        'width' => 850,
-        'height' => 350,
-      ),
-     //Animation mode
-     'animation' => 'fadeIn',
-    ),
-  ), 'setting');
-}
-
-//Next, add class "ctools-modal-my-cool-module-modal" to link/button which trigger the modal window.
-
-
-function members_user_login(&$edit, $account){
-
-  if((!empty($account->field_church_)) && (empty($account->field_small_group))){
-    drupal_set_message(t('Your profile is incomplete. Group field is empty. <a href="@user-edit">Click here to update</a>'), array('@user-edit' => url("user/$account->uid/edit")), 'error');
-  }
-  if((empty($account->field_church_)) && (!empty($account->field_small_group))){
-    drupal_set_message(t('Your profile is incomplete. Church field is empty'), 'error');
-  }
-  if ((empty($account->field_church_)) && (empty($account->field_small_group))) {
-     drupal_set_message(t('Your profile is incomplete. Church and Group fields are empty'), 'error');
-  }
-}
-
 function members_form_comment_node_members_form_alter(&$form, &$form_state, $form_id){
-$form['feedback']['#markup'] = '<div class="feeback"><ul><li>Reasons for absence from the service</li><li>Follow up activities and feddback</li><li>Prayer requests</li><li>Needs an chanllenges</li><li>Other comments that will aid in the welfare and care of this member</li></ul></div>';
+$form['feedback']['#markup'] = '<div class="feeback"><ul><li>Reasons for absence from the service</li><li>Follow up activities and feddback</li><li>Prayer requests</li><li>Needs and challenges</li><li>Other comments that will aid the welfare and care of this member</li></ul></div>';
 $form['feedback']['#weight'] = '-3';
   return $form;
 }
 
+
 function members_views_plugins_alter(&$plugins) {
-   $plugins['style']['views_data_export_xls']['export feed icon'] = 'sites/default/files/xlsx.png';
-    $plugins['style']['views_data_export_txt']['export feed icon'] = 'sites/default/files/txts.png';
+  $plugins['style']['views_data_export_xls']['export feed icon'] = 'sites/default/files/xlsx.png';
+   $plugins['style']['views_data_export_txt']['export feed icon'] = 'sites/default/files/txts.png';
 }
-
-// function members_comment_insert($comment) {
-//   $node = node_load($comment->nid);
-//   if ($comment->uid == $node->uid) {
-//     // The comment author is also the node author, and we would ususally
-//     // return early here, but since this is an example, we send an email
-//     // anyway.
-//   }
-
-//   // Create a new message, assigned to the node author, and add a
-//   // reference to the comment, so we can later use tokens related to that
-//   // comment.
-//   $message = message_create('comment_insert', array('uid' => $node->uid));
-//   $wrapper = entity_metadata_wrapper('message', $message);
-//   $wrapper->field_comment_ref->set($comment);
-
-//   // Let message-notify deliver the email, and send the message for us.
-//   // We pass in the options the field names, that will be used to capture
-//   // the rendered message, and provide an email log.
-//   $options = array(
-//     'rendered fields' => array(
-//       'message_notify_email_subject' => 'field_message_rendered_subject',
-//       'message_notify_email_body' => 'field_message_rendered_body',
-//     ),
-//   );
-
-//   message_notify_send_message($message, $options);
-//   if (module_exists('message_subscribe')) {
-//     // If Message-subscribe exists, let this example module use it.
-//     message_subscribe_send_message('comment', $comment, $message, array('email' => $options));
-//   }
-// }
-
-
-
-
-
