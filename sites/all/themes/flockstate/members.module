@@ -1,0 +1,578 @@
+<?php
+
+function members_menu(){
+    $items['import/%/guidelines'] = array(
+    'title' => 'Guidelines',
+    'page callback' => 'node_page_view',
+    'page arguments' => array(node_load(906)),
+    'access callback' => TRUE,
+    'type' => MENU_LOCAL_TASK,
+    'weight' => -13
+
+    );
+return $items;
+}
+
+function members_form_members_node_form_alter(&$form, &$form_state, $form_id) {
+  // unset($form['field_discipleship_status']['und']['#options']['_none']);
+  unset($form['field_gender']['und']['#options']['_none']);
+drupal_set_title(t('Members'));
+
+if (count($form['field_church_']['und']['#options']) > 1){
+   $form['field_church_']['und']['#required'] = TRUE;
+ }
+else{
+   //$form['field_church_']['und']['#required'] = FALSE;
+ unset($form['field_church_']);
+ }
+
+return $form;
+}
+
+
+
+function members_form_prospects_node_form_alter(&$form, &$form_state, $form_id) {
+unset($form['field_gender']['und']['#options']['_none']);
+drupal_set_title(t('Prospects'));
+
+if (count($form['field_church_']['und']['#options']) > 1){
+   $form['field_church_']['und']['#required'] = TRUE;
+ }
+else{
+   //$form['field_church_']['und']['#required'] = FALSE;
+ unset($form['field_church_']);
+ }
+
+return $form;
+}
+
+
+function members_form_visitors_node_form_alter(&$form, &$form_state, $form_id) {
+  unset($form['field_gender']['und']['#options']['_none']);
+  unset($form['field_visitor_decision']['und']['#options']['_none']);
+drupal_set_title(t('Visitors'));
+
+if (count($form['field_church_']['und']['#options']) > 1){
+   $form['field_church_']['und']['#required'] = TRUE;
+ }
+else{
+  // $form['field_church_']['und']['#required'] = FALSE;
+   unset($form['field_church_']);
+ }
+
+return $form;
+}
+
+function members_form_report_node_form_alter(&$form, &$form_state, $form_id) {
+drupal_set_title(t('Service Report'));
+if (count($form['field_church_']['und']['#options']) > 1){
+   $form['field_church_']['und']['#required'] = TRUE;
+ }
+else{
+  // $form['field_church_']['und']['#required'] = FALSE;
+   unset($form['field_church_']);
+ }
+
+return $form;
+}
+
+
+function members_form_family_members_node_form_alter(&$form, &$form_state, $form_id) {
+drupal_set_title(t('Family'));
+
+return $form;
+}
+
+function members_form_attendance_node_form_alter(&$form, &$form_state, $form_id) {
+drupal_set_title(t('Attendance'));
+
+return $form;
+}
+
+function members_form_visitors_attendance_node_form_alter(&$form, &$form_state, $form_id) {
+drupal_set_title(t('Visitor Attendance'));
+
+return $form;
+}
+
+// VBO label change
+function members_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    if(isset($implementations['members'])){
+      $group = $implementations['members'];
+      unset($implementations['members']);
+      $implementations['members'] = $group;
+    }
+  }
+}
+
+
+function members_form_views_form_groups_members_page_alter(&$form, &$form_state, $form_id){
+$form['from']['views_send_from_name']['#default_value'] = '';
+    $form['from']['views_send_from_mail']['#default_value'] = '';
+    $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
+    $form['to']['views_send_to_mail']['#title'] = 'Select Email Option';
+        unset($form['to']['views_send_to_name']['#options']['counter_pos_1']);
+        $form['to']['views_send_to_name']['#options']['field_group_member_pos_2'] = 'Name';
+        unset($form['to']['views_send_to_name']['#options']['nid_pos_3']);
+        unset($form['to']['views_send_to_name']['#options']['field_email_pos_4']);
+        unset($form['to']['views_send_to_mail']['#options']['counter_pos_1']);
+        unset($form['to']['views_send_to_mail']['#options']['field_group_member_pos_2']);
+        unset($form['to']['views_send_to_mail']['#options']['nid_pos_3']);
+        $form['to']['views_send_to_mail']['#options']['field_email_pos_4'] = 'Email';
+
+    // Adjust VBO text labels and set button weightings
+  // Set button order with #weight
+  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
+    // Adjust text
+    $form['select']['#title'] = t('Choose Action');
+  }
+}
+
+//Send mail for members page
+  function members_form_views_form_members_page_alter(&$form, &$form_state, $form_id){
+     // Adjust VBO text labels and set button weightings
+  // Set button order with #weight
+  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
+    // Adjust text
+    $form['select']['#title'] = t('Choose An Action');
+  }
+    $form['from']['views_send_from_name']['#default_value'] = '';
+    $form['from']['views_send_from_mail']['#default_value'] = '';
+    $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
+    $form['to']['views_send_to_mail']['#title'] = 'Select Email Option';
+
+    $form['to']['views_send_to_name']['#options']['views_php_5_pos_5'] = 'Name';
+    unset($form['to']['views_send_to_name']['#options']['node_title_pos_3']);
+    unset($form['to']['views_send_to_name']['#options']['field_name_pos_5']);
+    unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
+    unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_7']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_13']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_14']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_4']);
+    unset($form['to']['views_send_to_name']['#options']['path_pos_9']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_6']);
+    unset($form['to']['views_send_to_name']['#options']['comments_link_pos_10']);
+    unset($form['to']['views_send_to_name']['#options']['field_memail_pos_8']);
+    unset($form['to']['views_send_to_name']['#options']['node_comment_statistics_comment_count_pos_11']);
+    unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_6']);
+    unset($form['to']['views_send_to_name']['#options']['field_new_member_pos_15']);
+    unset($form['to']['views_send_to_name']['#options']['node_new_comments_pos_12']);
+
+
+    $form['to']['views_send_to_mail']['#options']['field_memail_pos_8'] = 'Email';
+    unset($form['to']['views_send_to_mail']['#options']['views_php_5_pos_5']);
+    unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_6']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_4']);
+    unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
+    unset($form['to']['views_send_to_mail']['#options']['field_name_pos_5']);
+    unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_7']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_8']);
+    unset($form['to']['views_send_to_mail']['#options']['comments_link_pos_10']);
+    unset($form['to']['views_send_to_mail']['#options']['path_pos_9']);
+    unset($form['to']['views_send_to_mail']['#options']['node_comment_statistics_comment_count_pos_11']);
+    unset($form['to']['views_send_to_mail']['#options']['history_timestamp_pos_6']);
+    unset($form['to']['views_send_to_mail']['#options']['node_new_comments_pos_12']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_13']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_14']);
+    unset($form['to']['views_send_to_mail']['#options']['field_email_pos_7']);
+    unset($form['to']['views_send_to_mail']['#options']['field_new_member_pos_15']);
+
+    if ($form_state['view']->name == 'members' && $form_id == 'views_exposed_form') {
+    $form['#action'] = 'test/members';
+   }
+
+  }
+
+
+function members_form_views_form_new_members_local_alter(&$form, &$form_state, $form_id){
+     // Adjust VBO text labels and set button weightings
+  // Set button order with #weight
+  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
+    // Adjust text
+    $form['select']['#title'] = t('Choose An Action');
+  }
+   $form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
+    unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
+    unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_4']);
+    unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_5']);
+    unset($form['to']['views_send_to_name']['#options']['field_memail_pos_6']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
+    unset($form['to']['views_send_to_name']['#options']['path_pos_8']);
+    unset($form['to']['views_send_to_name']['#options']['comments_link_pos_9']);
+    unset($form['to']['views_send_to_name']['#options']['node_comment_statistics_comment_count_pos_10']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_11']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_12']);
+    unset($form['to']['views_send_to_name']['#options']['node_new_comments_pos_13']);
+    unset($form['to']['views_send_to_name']['#options']['field_address_pos_14']);
+
+    $form['to']['views_send_to_mail']['#options']['field_memail_pos_6'] = 'Email';
+    unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
+    unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
+    unset($form['to']['views_send_to_mail']['#options']['history_timestamp_pos_4']);
+    unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_5']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
+    unset($form['to']['views_send_to_mail']['#options']['path_pos_8']);
+    unset($form['to']['views_send_to_mail']['#options']['comments_link_pos_9']);
+    unset($form['to']['views_send_to_mail']['#options']['node_comment_statistics_comment_count_pos_10']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_11']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_12']);
+    unset($form['to']['views_send_to_mail']['#options']['node_new_comments_pos_13']);
+    unset($form['to']['views_send_to_mail']['#options']['field_address_pos_14']);
+  }
+
+function members_form_views_form_attendance_page_alter(&$form, &$form_state, $form_id){
+   $form['from']['views_send_from_name']['#default_value'] = '';
+    $form['from']['views_send_from_mail']['#default_value'] = '';
+    $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
+    $form['to']['views_send_to_mail']['#title'] = 'Select Email Option';
+        $form['to']['views_send_to_name']['#options']['field_name_of_member_pos_1'] = 'Name';
+        unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_2']);
+        unset($form['to']['views_send_to_name']['#options']['field_email_pos_3']);
+        unset($form['to']['views_send_to_name']['#options']['field_attendance__pos_4']);
+        unset($form['to']['views_send_to_mail']['#options']['field_name_of_member_pos_1']);
+        unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_2']);
+        $form['to']['views_send_to_mail']['#options']['field_email_pos_3'] = 'Email';
+        unset($form['to']['views_send_to_mail']['#options']['field_attendance__pos_4']);
+}
+
+function members_form_views_form_visitors_attendance_page_alter(&$form, &$form_state, $form_id){
+    $form['from']['views_send_from_name']['#default_value'] = '';
+    $form['from']['views_send_from_mail']['#default_value'] = '';
+    $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
+    $form['to']['views_send_to_mail']['#title'] = 'Select Email Option';
+    $form['to']['views_send_to_name']['#options']['field_visitor_pos_1'] = 'Name';
+    unset($form['to']['views_send_to_name']['#options']['field_tel_no_pos_2']);
+    unset($form['to']['views_send_to_name']['#options']['field_email__pos_3']);
+    unset($form['to']['views_send_to_name']['#options']['field_attendance_visitor_pos_4']);
+    unset($form['to']['views_send_to_mail']['#options']['field_visitor_pos_1']);
+    unset($form['to']['views_send_to_mail']['#options']['field_tel_no_pos_2']);
+    $form['to']['views_send_to_mail']['#options']['field_email__pos_3'] = 'Email';
+    unset($form['to']['views_send_to_mail']['#options']['field_attendance_visitor_pos_4']);
+}
+
+//Send mail prospects page
+function members_form_views_form_prospects_local_alter(&$form, &$form_state, $form_id){
+    // Adjust VBO text labels and set button weightings
+  // Set button order with #weight
+  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
+    // Adjust text
+    $form['select']['#title'] = t('Choose An Action');
+  }
+
+$form['from']['views_send_from_name']['#default_value'] = '';
+    $form['from']['views_send_from_mail']['#default_value'] = '';
+    $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
+    $form['to']['views_send_to_mail']['#title'] = 'Select Email Option';
+
+$form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
+unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
+unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_4']);
+unset($form['to']['views_send_to_name']['#options']['field_memail_pos_5']);
+unset($form['to']['views_send_to_name']['#options']['nid_pos_6']);
+unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
+
+unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
+unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_4']);
+unset($form['to']['views_send_to_mail']['#options']['nid_pos_6']);
+unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
+unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
+$form['to']['views_send_to_mail']['#options']['field_memail_pos_5'] = 'Email';
+}
+
+
+
+//Role send mail form
+function members_form_views_form_role_page_1_alter(&$form, &$form_state, $form_id){
+unset($form['to']['views_send_to_name']['#options']['counter_pos_1']);
+unset($form['to']['views_send_to_name']['#options']['field_memail_pos_4']);
+unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_3']);
+unset($form['to']['views_send_to_name']['#options']['field_ministry_pos_5']);
+unset($form['to']['views_send_to_name']['#options']['field_description_pos_6']);
+unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
+unset($form['to']['views_send_to_name']['#options']['nid_pos_8']);
+unset($form['to']['views_send_to_name']['#options']['nid_pos_8']);
+unset($form['to']['views_send_to_name']['#options']['field_church__pos_9']);
+$form['to']['views_send_to_name']['#options']['node_field_data_field_member_to_role_title_pos_2'] = 'Name';
+$form['to']['views_send_to_name']['#description'] = 'Select name option';
+$form['to']['views_send_to_name']['#title'] = "Recipient's name";
+
+unset($form['to']['views_send_to_mail']['#options']['counter_pos_1']);
+$form['to']['views_send_to_mail']['#options']['field_memail_pos_4'] = 'Email';
+unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_3']);
+unset($form['to']['views_send_to_mail']['#options']['field_ministry_pos_5']);
+unset($form['to']['views_send_to_mail']['#options']['field_description_pos_6']);
+unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
+unset($form['to']['views_send_to_mail']['#options']['nid_pos_8']);
+unset($form['to']['views_send_to_name']['#options']['field_church__pos_9']);
+unset($form['to']['views_send_to_mail']['#options']['node_field_data_field_member_to_role_title_pos_2']);
+$form['to']['views_send_to_mail']['#description'] = 'Select email option';
+$form['to']['views_send_to_mail']['#title'] = "Recipient's email";
+
+$form['from']['views_send_from_name']['#default_value'] = '';
+$form['from']['views_send_from_mail']['#default_value'] = '';
+}
+
+function members_form_views_form_group_chnage_page_alter(&$form, &$form_state, $form_id){
+    // Adjust VBO text labels and set button weightings
+  // Set button order with #weight
+  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
+    // Adjust text
+    $form['select']['#title'] = t('Choose An Action');
+  }
+  if (isset($form['select']['action::views_bulk_operations_delete_item'])) {
+      $form['select']['action::views_bulk_operations_delete_item']['#weight'] = 10;
+    }
+  $form['properties']['name']['#description'] = 'Enter new name';
+  }
+
+function members_form_comment_node_visitors_form_alter(&$form, &$form_state, $form_id){
+// unset($form['author']['_author']['#title']);
+// unset($form['author']['_author']['#markup']);
+$form['feedback']['#markup'] = '<div class="feeback"><ul><li>Reasons for absence from the service</li><li>Follow up activities and feddback</li><li>Prayer requests</li><li>Needs and challenges</li><li>Other comments that will aid the assimilation of this visitor(guests)</li></ul></div>';
+$form['feedback']['#weight'] = '-3';
+return $form;
+}
+
+//$custom_strings = variable_get('locale_custom_strings_en', array());
+//$custom_strings['']['Performed Move Member To Prospects on 1 item.'] = 'Changes was completed successfully';
+//variable_set('locale_custom_strings_en', $custom_strings);
+
+
+function members_form_user_login_alter(&$form, &$form_state, $form_id){
+drupal_set_title(t('Log into FlockState'));
+$form['name']['#placeholder'] = decode_entities('&#xf007;');
+$form['pass']['#placeholder'] = decode_entities('&#xf084;');
+$form['reset']['#markup'] = '<p>Forgot your password? <a href="/user/password">Reset it</a></p>';
+}
+
+function members_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  $form['account']['read']['#markup'] = '<div class="reado"><p class="read">Enter details of Account Administrator in the form below</p></div>';
+  $form['account']['read']['#weight'] = -12;
+  $form['account']['notify']['#default_value'] = TRUE;
+}
+
+
+function members_date_popup_process_alter(&$element, &$form_state, $context) {
+
+  unset($element['date']['#description']);
+  unset($element['date']['#title']);
+
+}
+
+function members_field_formatter_info() {
+  return array(
+    'taxonomy_term_reference_link_with_class' => array(
+      'label' => t('Link with class'),
+      'field types' => array('taxonomy_term_reference'),
+    ),
+    'taxonomy_term_reference_plain_with_class' => array(
+      'label' => t('Plain text with class'),
+      'field types' => array('taxonomy_term_reference'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function members_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+
+  // Terms whose tid is 'autocreate' do not exist
+  // yet and $item['taxonomy_term'] is not set. Theme such terms as
+  // just their name.
+
+  switch ($display['type']) {
+    case 'taxonomy_term_reference_link_with_class':
+      foreach ($items as $delta => $item) {
+        if ($item['tid'] == 'autocreate') {
+          $element[$delta] = array(
+            '#value' => check_plain($item['name']),
+            '#theme' => 'html_tag',
+            '#tag' => 'span',
+            '#attributes' => array(
+              'class' => array('term-tid-new'),
+            ),
+          );
+        }
+        else {
+          $term = $item['taxonomy_term'];
+          $uri = entity_uri('taxonomy_term', $term);
+          $uri['options']['attributes']['class'][] = 'term-tid-' . $term->tid;
+          $element[$delta] = array(
+            '#type' => 'link',
+            '#title' => $term->name,
+            '#href' => $uri['path'],
+            '#options' => $uri['options'],
+          );
+        }
+      }
+
+      break;
+
+    case 'taxonomy_term_reference_plain_with_class':
+      foreach ($items as $delta => $item) {
+        $name = ($item['tid'] != 'autocreate' ? $item['taxonomy_term']->name : $item['name']);
+        $tid = ($item['tid'] != 'autocreate' ? $item['taxonomy_term']->tid : 'new');
+        $element[$delta] = array(
+          '#value' => check_plain($name),
+          '#theme' => 'html_tag',
+          '#tag' => 'span',
+          '#attributes' => array(
+            'class' => array('term-tid-' . $tid),
+          ),
+        );
+      }
+      break;
+  }
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_prepare_view().
+ *
+ * This preloads all taxonomy terms for multiple loaded objects at once and
+ * unsets values for invalid terms that do not exist.
+ */
+function members_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
+  // Call prepare view formatter for a taxonomy term
+  taxonomy_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, $items, $displays);
+}
+
+//Contact form alter
+function members_form_contact_site_form_alter(&$form, &$form_state, $form_id) {
+$form['name']['#title'] = 'Name';
+$form['mail']['#title'] = 'Email';
+
+return $form;
+}
+
+//feeds import alter
+function members_feeds_presave(FeedsSource $source, $entity, $item) {
+  if (($entity->type == 'visitors') || ($entity->type == 'prospects') || ($entity->type == 'members')) {
+    global $user;
+    $entity->uid = $user->uid;
+  }
+}
+
+// Visitors Attendance form alter
+function members_form_alter(&$form, &$form_state, $form_id) {
+if($form_id == 'visitors_attendance_node_form'){
+  $form['field_visitor'][LANGUAGE_NONE]['add_more']['#value'] = 'Add Visitors';
+}
+return $form;
+}
+
+ function members_form_views_exposed_form_alter(&$form, $form_state) {
+  $form['date_filter_1']['value']['#date_format'] = 'm/d/Y';
+  $form['date_filter']['value']['#date_format'] = 'm/d/Y';
+  $form['date_filter']['min']['#date_format'] = 'm/d/Y';
+  $form['date_filter']['max']['#date_format'] = 'm/d/Y';
+  $form['date_filter_1']['min']['#date_format'] = 'm/d/Y';
+  $form['date_filter_1']['max']['#date_format'] = 'm/d/Y';
+  $form['date_filter_2']['value']['#date_format'] = 'm/d/Y';
+}
+
+function members_form_user_profile_form_alter(&$form, &$form_state, $form_id){
+if(count($form['field_church_']['und']['#options']) < 2){
+unset($form['field_church_']);
+}
+if(($form['account']['roles']['#default_value'][0] == 2) && ($form['account']['roles']['#default_value'][1] == 10)){
+   unset($form['field_church_']);
+}
+
+return $form;
+}
+
+// Rules queue mail
+/**
+* Implements hook_cron_queue_info().
+*/
+function members_cron_queue_info() {
+$queues = array();
+$queues['members_queue_notify'] = array(
+'worker callback' => 'members_queue_notify_worker',
+'time' => 90,
+);
+return $queues;
+}
+
+/**
+* Queue worker for sending notification mails.
+*/
+function members_queue_notify_worker($params) {
+drupal_mail('members', 'notify', $params['to'], language_default(), $params, $params['from']);
+}
+
+/**
+* Implements hook_mail().
+*/
+function members_mail($key, &$message, $params) {
+$language = $message['language'];
+$message['subject'] = $params['subject'];
+$message['body'][] = $params['message'];
+}
+
+/**
+* Implements hook_rules_action_info().
+*/
+function members_rules_action_info() {
+return array(
+'members_rules_action_mail' => array(
+'label' => t('Send mail'),
+'group' => 'members',
+'parameter' => array(
+'to' => array(
+'type' => 'text',
+'label' => t('To'),
+'description' => t('The e-mail address or addresses where the message will be sent to. The formatting of this string must comply with RFC 2822.'),
+),
+'subject' => array(
+'type' => 'text',
+'label' => t('Subject'),
+'description' => t("The mail's subject."),
+),
+'message' => array(
+'type' => 'text',
+'label' => t('Message'),
+'description' => t("The mail's message body."),
+),
+'from' => array(
+'type' => 'text',
+'label' => t('From'),
+'description' => t("The mail's from address. Leave it empty to use the site-wide configured address."),
+'optional' => TRUE,
+),
+),
+),
+);
+}
+
+/**
+* Action: Add notification mails to the queue.
+*/
+function members_rules_action_mail($to, $subject, $message, $from = NULL, $settings, RulesState $state, RulesPlugin $element) {
+// Gather params.
+$params = array(
+'to' => str_replace(array("\r", "\n"), '', $to),
+'from' => !empty($from) ? str_replace(array("\r", "\n"), '', $from) : NULL,
+'subject' => $subject,
+'message' => $message,
+);
+// Add to the queue.
+$queue = DrupalQueue::get('members_queue_notify');
+$queue->createItem($params);
+}
+
+function members_form_comment_node_members_form_alter(&$form, &$form_state, $form_id){
+$form['feedback']['#markup'] = '<div class="feeback"><ul><li>Reasons for absence from the service</li><li>Follow up activities and feddback</li><li>Prayer requests</li><li>Needs an chanllenges</li><li>Other comments that will aid in the welfare and care of this member</li></ul></div>';
+$form['feedback']['#weight'] = '-3';
+  return $form;
+}
+
+
+
+

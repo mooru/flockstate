@@ -1,0 +1,17 @@
+/* Custom CSS overrides */
+.page-tutorials h1 .fa{
+	color:tomato;
+}
+
+.view-header p .fa-exclamation-triangle{
+color:#f00;
+}
+
+.view-id-visitors_attendance_count .badge,
+.view-id-members_attendance_count .badge{
+background-color:#F15D5D;
+}
+
+.page-categories .fa-warning{
+color:#f00;
+}
