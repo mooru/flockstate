@@ -1,0 +1,7 @@
+name = Members
+description = Add description to members form
+
+; Information added by drupal.org packaging script on 2013-03-09
+version = "7.x-1.1"
+core = "7.x"
+
