@@ -1899,34 +1899,6 @@ p.ex1 {
 #views-exposed-form-absent-comments-comment .views-exposed-form .views-exposed-widget {
     float: left !important;
 }
-/*div#block-simplenews-0 {
-    position: absolute;
-    top: -61px;
-    z-index: 1;
-    background-color: #D88112;
-    color: #fff;
-    box-shadow: 0px 0px 8px #808080;
-    padding-bottom: 0px;
-
-}
-div#block-simplenews-0 .content {
-    padding: 20px;
-
-
-}
-div#block-simplenews-0 h2 {
-    text-align: center;
-    width: 486px;
-    line-height: 19px;
-    padding: 0px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-}
-div#block-simplenews-0 h2::after{
-	display: none;
-
-}
-*/
 
 .page-mail-list h1.page-title::after {
 content: "\f0e0";
