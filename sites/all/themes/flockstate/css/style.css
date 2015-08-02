@@ -1408,7 +1408,7 @@ ul.primary {
 .page-family-member section.col-md-8, .page-prospects-in-church section.col-md-8, .page-prospects-in-groups section.col-md-8,
 .page-group-members section.col-md-8, .page-roles section.col-md-8, .page-discipleship section.col-md-8,
 .page-members-attendance section.col-md-8, .page-visitors-attendance section.col-md-8, .page-report section.col-md-8,
-.page-calendar-birthday section.col-md-12, .page-group-birthday section.col-md-12, .page-calendar-wedding-anniversary section.col-md-12, .page-user-edit section.col-md-12, .page-user section.col-md-12, div.form-item.form-type-select.form-item-profile-package-field-package-und,
+.page-calendar-birthday section.col-md-12, .page-calendar-ministry section.col-md-12, .page-group-birthday section.col-md-12, .page-calendar-wedding-anniversary section.col-md-12, .page-user-edit section.col-md-12, .page-user section.col-md-12, div.form-item.form-type-select.form-item-profile-package-field-package-und,
 .page-signup-register section.col-md-12, .page-analysis section.col-md-12, .page-comment section.col-md-12,
 .page-batch section.col-md-12, .page-notifications section.col-md-12, .page-faq-page section.col-md-12,
 .page-page-not-found section.col-md-12, .page-categories section.col-md-12, .page-record-count section.col-md-12,
@@ -1840,6 +1840,8 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 }
 .field-picture img, .picme img {
     width: 200px;
+    background-color:#fff;
+    border:1px solid #eee;
 }
 .logged-in.page-front #node-922 .field-body {
     display: none;
@@ -2359,33 +2361,8 @@ padding: 10px 0px;
 
 /*Comments style and subscribe to comments*/
 
-a.flag.flag-action.flag-link-toggle.flag-processed {
-    background-color: #0B9C72;
-    color: #fff;
-    padding: 7px 20px;
-    text-decoration: none;
-}
-
-a.flag.flag-action.flag-link-toggle.flag-processed:hover {
-    background-color: #0DD89E;
-    text-decoration: none;
-}
-
-a.flag.unflag-action.flag-link-toggle.flagged.flag-processed{
-    background-color: #696969;
-    color: #fff;
-    padding: 7px 20px;
-    text-decoration: none;
-}
-
-a.flag.unflag-action.flag-link-toggle.flagged.flag-processed:hover{
-    background-color: #B1AEAE;
-    text-decoration: none;
-
-}
-
 .comment-add a{
-        background-color: #C71585;
+    background-color: #C71585;
     color: #fff !important;
     padding: 7px 10px;
     text-decoration: none;
@@ -2393,7 +2370,7 @@ a.flag.unflag-action.flag-link-toggle.flagged.flag-processed:hover{
 }
 
 .comment-add a:hover{
-        background-color: #D659A8;
+    background-color: #D659A8;
     color: #fff;
     padding: 7px 10px;
     text-decoration: none;
@@ -2405,8 +2382,7 @@ h3.field-label {
     border: 1px solid #ABA6A6;
 }
 
-.effect-none h3,
-#node-visitors-form-group-follow-up h2{
+.collapsible.speed-fast.effect-none > h3{
     border-bottom: 2px solid #ececec;
 }
 
@@ -2428,9 +2404,5 @@ a[href*="subuser/create"] {
     text-decoration: none;
 }
 
-.field-picture {
-    background-color: #fff;
-    width: 200px;
-    border: 1px solid #eee;
-}
+
 
