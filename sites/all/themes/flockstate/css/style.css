@@ -2376,5 +2376,8 @@ a[href*="subuser/create"] {
     text-decoration: none;
 }
 
-
+.not-logged-in.page-user section.col-md-12{
+  width: 50%;
+  margin: auto;
+}
 
