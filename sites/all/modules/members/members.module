@@ -361,7 +361,7 @@ $form['account']['field_full_name'] = $form['field_full_name'];
       $form['field_phone_nos']['und'][0]['value']['#required'] = TRUE;
        $form['field_domain_ministry']['und'][0]['value']['#required'] = TRUE;
        $form['field_name_of_ministry']['und'][0]['value']['#required'] = TRUE;
-       $form['field_address_ministry']['und'][0]['value']['#required'] = TRUE;
+       $form['field_address_ministry']['und'][0]['#required'] = TRUE;
   }
    if(user_is_logged_in()){
       unset($form['field_phone_nos']);
