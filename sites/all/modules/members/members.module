@@ -357,7 +357,19 @@ $form['account']['field_full_name'] = $form['field_full_name'];
   unset($form['field_full_name']);
   if(user_is_anonymous()) {
       $form['account']['#title'] = "Administrator's Account";
+
+      $form['field_phone_nos']['und'][0]['value']['#required'] = TRUE;
+       $form['field_domain_ministry']['und'][0]['value']['#required'] = TRUE;
+       $form['field_name_of_ministry']['und'][0]['value']['#required'] = TRUE;
+       $form['field_address_ministry']['und'][0]['value']['#required'] = TRUE;
   }
+   if(user_is_logged_in()){
+      unset($form['field_phone_nos']);
+       unset($form['field_domain_ministry']);
+       unset($form['field_name_of_ministry']);
+       unset($form['field_address_ministry']);
+  }
+
   return $form;
 }
 
