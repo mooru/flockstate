@@ -2399,8 +2399,7 @@ a[href*="subuser/create"] {
 .not-front.logged-in.page-admin.page-admin-people.page-admin-people-create .collapsible.speed-fast.effect-none > h3,
 .not-front.logged-in.page-user.page-user-.page-user-edit .collapsible.speed-fast.effect-none > h3 {
     display: none;
-} {
-    display: none;
+
 }
 
 
