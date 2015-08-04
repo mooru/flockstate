@@ -2402,4 +2402,6 @@ a[href*="subuser/create"] {
 
 }
 
-
+.not-logged-in .field-group-format-title {
+    color: #f00;
+}
