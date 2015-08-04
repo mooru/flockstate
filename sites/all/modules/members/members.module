@@ -349,30 +349,35 @@ return $form;
 }
 
 function members_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+
   $form['account']['read']['#markup'] = '<div class="reado"><p class="read">Enter details of Account Administrator in the form below</p></div>';
   $form['account']['read']['#weight'] = -12;
   $form['account']['notify']['#default_value'] = TRUE;
-$form['account']['field_full_name'] = $form['field_full_name'];
+  $form['account']['field_full_name'] = $form['field_full_name'];
   $form['account']['field_full_name']['#weight'] = -15;
   unset($form['field_full_name']);
-  if(user_is_anonymous()) {
-      $form['account']['#title'] = "Administrator's Account";
 
+  if(user_is_anonymous()) {
+    $form['account']['#title'] = "User Account";
       $form['field_phone_nos']['und'][0]['value']['#required'] = TRUE;
        $form['field_domain_ministry']['und'][0]['value']['#required'] = TRUE;
        $form['field_name_of_ministry']['und'][0]['value']['#required'] = TRUE;
-       $form['field_address_ministry']['und'][0]['#required'] = TRUE;
+       $form['field_address_of_minstry']['und'][0]['value']['#required'] = TRUE;
   }
-   if(user_is_logged_in()){
-      unset($form['field_phone_nos']);
-       unset($form['field_domain_ministry']);
-       unset($form['field_name_of_ministry']);
-       unset($form['field_address_ministry']);
-  }
+$form['field_domain_ministry']['#prefix'] = '<div class="prefix"><div class="oop">http://</div>';
+$form['field_domain_ministry']['#suffix'] = '<div class="ooo">.flockstate.com</div></div>';
+  // $form['#after_build'][] = 'members_form_user_register_form_after_build';
 
   return $form;
+
+
 }
 
+// function members_form_user_register_form_after_build(&$form, &$form_state) {
+//   // Hide the B2B group.
+//   field_group_hide_field_groups($form, array('group_admin_account'));
+//   return $form;
+// }
 
 function members_date_popup_process_alter(&$element, &$form_state, $context) {
 
