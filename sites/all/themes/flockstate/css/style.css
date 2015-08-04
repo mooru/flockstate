@@ -2376,8 +2376,31 @@ a[href*="subuser/create"] {
     text-decoration: none;
 }
 
-.not-logged-in.page-user section.col-md-12{
+.not-logged-in.page-user.page-user-register section.col-md-12{
   width: 50%;
   margin: auto;
 }
+
+.oop {
+    float: left;
+    padding-top: 54px;
+}
+
+.form-item.form-type-textfield.form-item-field-domain-ministry-und-0-value {
+    float: left;
+    width: 388px;
+}
+
+.ooo {
+    float: left;
+    padding-top: 56px;
+}
+
+.not-front.logged-in.page-admin.page-admin-people.page-admin-people-create .collapsible.speed-fast.effect-none > h3,
+.not-front.logged-in.page-user.page-user-.page-user-edit .collapsible.speed-fast.effect-none > h3 {
+    display: none;
+} {
+    display: none;
+}
+
 
