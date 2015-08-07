@@ -107,36 +107,9 @@ function members_module_implements_alter(&$implementations, $hook) {
 }
 
 
-function members_form_views_form_groups_members_page_alter(&$form, &$form_state, $form_id){
-$form['from']['views_send_from_name']['#default_value'] = '';
-    $form['from']['views_send_from_mail']['#default_value'] = '';
-    $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
-    $form['to']['views_send_to_mail']['#title'] = 'Select Email Option';
-        unset($form['to']['views_send_to_name']['#options']['counter_pos_1']);
-        $form['to']['views_send_to_name']['#options']['field_group_member_pos_2'] = 'Name';
-        unset($form['to']['views_send_to_name']['#options']['nid_pos_3']);
-        unset($form['to']['views_send_to_name']['#options']['field_email_pos_4']);
-        unset($form['to']['views_send_to_mail']['#options']['counter_pos_1']);
-        unset($form['to']['views_send_to_mail']['#options']['field_group_member_pos_2']);
-        unset($form['to']['views_send_to_mail']['#options']['nid_pos_3']);
-        $form['to']['views_send_to_mail']['#options']['field_email_pos_4'] = 'Email';
-
-    // Adjust VBO text labels and set button weightings
-  // Set button order with #weight
-  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
-    // Adjust text
-    $form['select']['#title'] = t('Choose Action');
-  }
-}
-
 //Send mail for members page
   function members_form_views_form_members_page_alter(&$form, &$form_state, $form_id){
-     // Adjust VBO text labels and set button weightings
-  // Set button order with #weight
-  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
-    // Adjust text
-    $form['select']['#title'] = t('Choose An Action');
-  }
+
     $form['from']['views_send_from_name']['#default_value'] = '';
     $form['from']['views_send_from_mail']['#default_value'] = '';
     $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
@@ -189,10 +162,7 @@ $form['from']['views_send_from_name']['#default_value'] = '';
 function members_form_views_form_new_members_local_alter(&$form, &$form_state, $form_id){
      // Adjust VBO text labels and set button weightings
   // Set button order with #weight
-  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
-    // Adjust text
-    $form['select']['#title'] = t('Choose An Action');
-  }
+
    $form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
     unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
     unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_4']);
@@ -254,12 +224,6 @@ function members_form_views_form_visitors_attendance_page_alter(&$form, &$form_s
 
 //Send mail prospects page
 function members_form_views_form_prospects_local_alter(&$form, &$form_state, $form_id){
-    // Adjust VBO text labels and set button weightings
-  // Set button order with #weight
-  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
-    // Adjust text
-    $form['select']['#title'] = t('Choose An Action');
-  }
 
 $form['from']['views_send_from_name']['#default_value'] = '';
     $form['from']['views_send_from_mail']['#default_value'] = '';
@@ -314,18 +278,18 @@ $form['from']['views_send_from_name']['#default_value'] = '';
 $form['from']['views_send_from_mail']['#default_value'] = '';
 }
 
-function members_form_views_form_group_chnage_page_alter(&$form, &$form_state, $form_id){
-    // Adjust VBO text labels and set button weightings
-  // Set button order with #weight
-  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
-    // Adjust text
-    $form['select']['#title'] = t('Choose An Action');
-  }
-  if (isset($form['select']['action::views_bulk_operations_delete_item'])) {
-      $form['select']['action::views_bulk_operations_delete_item']['#weight'] = 10;
-    }
-  $form['properties']['name']['#description'] = 'Enter new name';
-  }
+// function members_form_views_form_group_chnage_page_alter(&$form, &$form_state, $form_id){
+//     // Adjust VBO text labels and set button weightings
+//   // Set button order with #weight
+//   if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
+//     // Adjust text
+//     $form['select']['#title'] = t('Choose An Action');
+//   }
+//   if (isset($form['select']['action::views_bulk_operations_delete_item'])) {
+//       $form['select']['action::views_bulk_operations_delete_item']['#weight'] = 10;
+//     }
+//   $form['properties']['name']['#description'] = 'Enter new name';
+//   }
 
 function members_form_comment_node_visitors_form_alter(&$form, &$form_state, $form_id){
 // unset($form['author']['_author']['#title']);
@@ -366,18 +330,22 @@ function members_form_user_register_form_alter(&$form, &$form_state, $form_id) {
   }
 $form['field_domain_ministry']['#prefix'] = '<div class="prefix"><div class="oop">http://</div>';
 $form['field_domain_ministry']['#suffix'] = '<div class="ooo">.flockstate.com</div></div>';
-  // $form['#after_build'][] = 'members_form_user_register_form_after_build';
 
   return $form;
 
 
 }
 
-// function members_form_user_register_form_after_build(&$form, &$form_state) {
-//   // Hide the B2B group.
-//   field_group_hide_field_groups($form, array('group_admin_account'));
-//   return $form;
-// }
+function members_form_profile2_edit_ministry_account_form_alter(&$form, &$form_state){
+
+if(user_is_anonymous()) {
+      $form['profile_ministry_account']['field_phone']['und'][0]['value']['#required'] = TRUE;
+
+
+  }
+
+  return $form;
+}
 
 function members_date_popup_process_alter(&$element, &$form_state, $context) {
 
@@ -487,6 +455,16 @@ function members_feeds_presave(FeedsSource $source, $entity, $item) {
 function members_form_alter(&$form, &$form_state, $form_id) {
 if($form_id == 'visitors_attendance_node_form'){
   $form['field_visitor'][LANGUAGE_NONE]['add_more']['#value'] = 'Add Visitors';
+}
+
+if(($form_id == 'views_form_members_church') || ($form_id == 'views_form_members_ministry') || ($form_id == 'views_form_members_groups') || ($form_id == 'views_form_new_members_church') || ($form_id == 'views_form_new_members_ministry') || ($form_id == 'views_form_members_groups')) {
+
+    // Adjust VBO text labels and set button weightings
+  // Set button order with #weight
+  if (isset($form['select']) && $form['select']['#title'] == 'Operations') {
+    // Adjust text
+    $form['select']['#title'] = t('Choose Action');
+  }
 }
 return $form;
 }
