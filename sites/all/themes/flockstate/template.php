@@ -195,23 +195,23 @@ function flockstate_preprocess_views_table(&$vars) {
   $vars['classes_array'][] = 'table table-striped table-hover table-bordered';
 }
 
-function flockstate_theme()  {
-  return array(
-    'date_ical_icon' => array(
-      'arguments' => array('url'),
-      ),
-    );
-}
-function flockstate_date_ical_icon($url)  {
-  $image = theme('image', array(
-                          'path' => drupal_get_path('theme', 'flockstate') . '/images/calendar.png',
-                          'alt' => $url['tooltip'],
-                          'title' => $url['tooltip'])
-            );
-  if ($image) {
-    return l(t('!image', array('!image' => $image)), $url['url'], array('html' => TRUE), '.Add to your calendar');
-  }
-}
+// function flockstate_theme()  {
+//   return array(
+//     'date_ical_icon' => array(
+//       'arguments' => array('url'),
+//       ),
+//     );
+// }
+// function flockstate_date_ical_icon($url)  {
+//   $image = theme('image', array(
+//                           'path' => drupal_get_path('theme', 'flockstate') . '/images/calendar.png',
+//                           'alt' => $url['tooltip'],
+//                           'title' => $url['tooltip'])
+//             );
+//   if ($image) {
+//     return l(t('!image', array('!image' => $image)), $url['url'], array('html' => TRUE), '.Add to your calendar');
+//   }
+// }
 
 
 

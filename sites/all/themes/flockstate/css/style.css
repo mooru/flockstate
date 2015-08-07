@@ -2419,3 +2419,32 @@ a[href*="subuser/create"] {
 .not-logged-in .field-group-format-title {
     color: #f00;
 }
+
+.view-birthday-of-members ul.pager li a, .view-birthday-of-members ul.pager li.pager-current {
+    background: rgba(214, 54, 31, 0.69);
+    border: 1px solid #eee;
+    padding: 7px 20px;
+    display: block;
+    margin: 5px 3px 5px 0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 0;
+}
+
+.view-birthday-of-members ul.pager li a:hover, .view-birthday-of-members ul.pager li.pager-current:hover {
+    background: #333;
+    border: 1px solid #eee;
+    padding: 7px 20px;
+    display: block;
+    margin: 5px 3px 5px 0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 0;
+}
+
+.view-birthday-of-members li.date-prev a,
+.view-birthday-of-members li.date-next a {
+    color: #fff !important;
+}
+
+

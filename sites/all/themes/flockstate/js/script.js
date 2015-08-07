@@ -14,7 +14,7 @@
             jQuery('.page-chart .page-header').append('<i class="fa fa-bar-chart-o"></i>');
             jQuery('.block-views h2').eq(0).append(' <i class="fa fa-filter"></i>');
             jQuery('#block-views-categories-block-1 h2').add('#block-views-categories-block-2 h2').append(' <i class="fa fa-tag"></i>');
-         
+
             jQuery("a[href*='sample.csv']").addClass('btn btn-primary btn-lg').text('Download Sample Template').prepend('<i class="fa fa-file"></i> ');
 
             jQuery('#block-block-1 h2').append('<i class="fa fa-calendar"></i>');
@@ -28,8 +28,8 @@
 
             //ical button
             jQuery('.ical-icon img').removeAttr('src');
-            jQuery('.ical-icon').text('Subscribe to calendar').addClass('btn btn-primary btn-lg').prepend('<i class="fa fa-calendar"></i> ');
-
+            jQuery('.ical-icon').text('Subscribe to calendar').prepend('<i class="fa fa-calendar"></i> ');
+            jQuery('.view-birthday-of-members .feed-icon a').addClass('button button--winona button--border-thin button--text-thick button--inverted');
             jQuery('#edit-keys-wrapper label').append('<i class="fa fa-search"></i>');
 
 
@@ -51,14 +51,14 @@
             xls.tooltip();
             txt.tooltip();
 
-          
+
             jQuery('#node-641 footer').remove();
 
             //Videos
             jQuery(".video-container").fitVids();
 
             jQuery('.node-pricing #tablefield-0').addClass('table table-hover table-striped table-bordered');
-          
+
             jQuery('.form-item-date-filter-min label').add('#views-exposed-form-visitors-attendance-page .views-widget-filter-date_filter label').add('#views-exposed-form-attendance-page .views-widget-filter-date_filter label').add('.form-item-date-filter-max label').add('#views-exposed-form-new-members-page .views-widget-filter-date_filter_1 label').add('.form-item-date-filter-1-min label').add('.form-item-date-filter-min label').add('.form-item-date-filter-1-min label').add('.form-item-date-filter-1-max label').append(' <i class="fa fa-calendar"></i>');
 
             jQuery('.marker').addClass('label label-info');
@@ -91,7 +91,7 @@
             jQuery('.views-field-nid a').tooltip();
             jQuery('.views-field-nid-1 a').tooltip();
 
-           
+
             jQuery('a[href*="#comment-form"]').attr('title', 'Add comments, prayer requests, needs, reasons for absence and any other necessary information');
             jQuery('a[href*="#comment-form"]').tooltip();
             jQuery('#views-form-members-page .views-field-comments-link a').tooltip();
@@ -100,7 +100,7 @@
                 'data-placement': 'top'
             });
             jQuery('#views-form-new-members-page .views-field-comments-link a').tooltip();
-            
+
             jQuery.fn.cleardefault = function() {
                 return this.focus(function() {
                     if (this.value == this.defaultValue) {
