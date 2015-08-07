@@ -159,124 +159,10 @@ function members_module_implements_alter(&$implementations, $hook) {
   }
 
 
-function members_form_views_form_new_members_local_alter(&$form, &$form_state, $form_id){
-     // Adjust VBO text labels and set button weightings
-  // Set button order with #weight
-
-   $form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
-    unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
-    unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_4']);
-    unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_5']);
-    unset($form['to']['views_send_to_name']['#options']['field_memail_pos_6']);
-    unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
-    unset($form['to']['views_send_to_name']['#options']['path_pos_8']);
-    unset($form['to']['views_send_to_name']['#options']['comments_link_pos_9']);
-    unset($form['to']['views_send_to_name']['#options']['node_comment_statistics_comment_count_pos_10']);
-    unset($form['to']['views_send_to_name']['#options']['nid_pos_11']);
-    unset($form['to']['views_send_to_name']['#options']['nid_pos_12']);
-    unset($form['to']['views_send_to_name']['#options']['node_new_comments_pos_13']);
-    unset($form['to']['views_send_to_name']['#options']['field_address_pos_14']);
-
-    $form['to']['views_send_to_mail']['#options']['field_memail_pos_6'] = 'Email';
-    unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
-    unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
-    unset($form['to']['views_send_to_mail']['#options']['history_timestamp_pos_4']);
-    unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_5']);
-    unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
-    unset($form['to']['views_send_to_mail']['#options']['path_pos_8']);
-    unset($form['to']['views_send_to_mail']['#options']['comments_link_pos_9']);
-    unset($form['to']['views_send_to_mail']['#options']['node_comment_statistics_comment_count_pos_10']);
-    unset($form['to']['views_send_to_mail']['#options']['nid_pos_11']);
-    unset($form['to']['views_send_to_mail']['#options']['nid_pos_12']);
-    unset($form['to']['views_send_to_mail']['#options']['node_new_comments_pos_13']);
-    unset($form['to']['views_send_to_mail']['#options']['field_address_pos_14']);
-  }
-
-function members_form_views_form_attendance_page_alter(&$form, &$form_state, $form_id){
-   $form['from']['views_send_from_name']['#default_value'] = '';
-    $form['from']['views_send_from_mail']['#default_value'] = '';
-    $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
-    $form['to']['views_send_to_mail']['#title'] = 'Select Email Option';
-        $form['to']['views_send_to_name']['#options']['field_name_of_member_pos_1'] = 'Name';
-        unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_2']);
-        unset($form['to']['views_send_to_name']['#options']['field_email_pos_3']);
-        unset($form['to']['views_send_to_name']['#options']['field_attendance__pos_4']);
-        unset($form['to']['views_send_to_mail']['#options']['field_name_of_member_pos_1']);
-        unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_2']);
-        $form['to']['views_send_to_mail']['#options']['field_email_pos_3'] = 'Email';
-        unset($form['to']['views_send_to_mail']['#options']['field_attendance__pos_4']);
-}
-
-function members_form_views_form_visitors_attendance_page_alter(&$form, &$form_state, $form_id){
-    $form['from']['views_send_from_name']['#default_value'] = '';
-    $form['from']['views_send_from_mail']['#default_value'] = '';
-    $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
-    $form['to']['views_send_to_mail']['#title'] = 'Select Email Option';
-    $form['to']['views_send_to_name']['#options']['field_visitor_pos_1'] = 'Name';
-    unset($form['to']['views_send_to_name']['#options']['field_tel_no_pos_2']);
-    unset($form['to']['views_send_to_name']['#options']['field_email__pos_3']);
-    unset($form['to']['views_send_to_name']['#options']['field_attendance_visitor_pos_4']);
-    unset($form['to']['views_send_to_mail']['#options']['field_visitor_pos_1']);
-    unset($form['to']['views_send_to_mail']['#options']['field_tel_no_pos_2']);
-    $form['to']['views_send_to_mail']['#options']['field_email__pos_3'] = 'Email';
-    unset($form['to']['views_send_to_mail']['#options']['field_attendance_visitor_pos_4']);
-}
-
-//Send mail prospects page
-function members_form_views_form_prospects_local_alter(&$form, &$form_state, $form_id){
-
-$form['from']['views_send_from_name']['#default_value'] = '';
-    $form['from']['views_send_from_mail']['#default_value'] = '';
-    $form['to']['views_send_to_name']['#title'] = 'Select Name Option';
-    $form['to']['views_send_to_mail']['#title'] = 'Select Email Option';
-
-$form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
-unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
-unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_4']);
-unset($form['to']['views_send_to_name']['#options']['field_memail_pos_5']);
-unset($form['to']['views_send_to_name']['#options']['nid_pos_6']);
-unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
-
-unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
-unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_4']);
-unset($form['to']['views_send_to_mail']['#options']['nid_pos_6']);
-unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
-unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
-$form['to']['views_send_to_mail']['#options']['field_memail_pos_5'] = 'Email';
-}
 
 
 
-//Role send mail form
-function members_form_views_form_role_page_1_alter(&$form, &$form_state, $form_id){
-unset($form['to']['views_send_to_name']['#options']['counter_pos_1']);
-unset($form['to']['views_send_to_name']['#options']['field_memail_pos_4']);
-unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_3']);
-unset($form['to']['views_send_to_name']['#options']['field_ministry_pos_5']);
-unset($form['to']['views_send_to_name']['#options']['field_description_pos_6']);
-unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
-unset($form['to']['views_send_to_name']['#options']['nid_pos_8']);
-unset($form['to']['views_send_to_name']['#options']['nid_pos_8']);
-unset($form['to']['views_send_to_name']['#options']['field_church__pos_9']);
-$form['to']['views_send_to_name']['#options']['node_field_data_field_member_to_role_title_pos_2'] = 'Name';
-$form['to']['views_send_to_name']['#description'] = 'Select name option';
-$form['to']['views_send_to_name']['#title'] = "Recipient's name";
 
-unset($form['to']['views_send_to_mail']['#options']['counter_pos_1']);
-$form['to']['views_send_to_mail']['#options']['field_memail_pos_4'] = 'Email';
-unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_3']);
-unset($form['to']['views_send_to_mail']['#options']['field_ministry_pos_5']);
-unset($form['to']['views_send_to_mail']['#options']['field_description_pos_6']);
-unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
-unset($form['to']['views_send_to_mail']['#options']['nid_pos_8']);
-unset($form['to']['views_send_to_name']['#options']['field_church__pos_9']);
-unset($form['to']['views_send_to_mail']['#options']['node_field_data_field_member_to_role_title_pos_2']);
-$form['to']['views_send_to_mail']['#description'] = 'Select email option';
-$form['to']['views_send_to_mail']['#title'] = "Recipient's email";
-
-$form['from']['views_send_from_name']['#default_value'] = '';
-$form['from']['views_send_from_mail']['#default_value'] = '';
-}
 
 // function members_form_views_form_group_chnage_page_alter(&$form, &$form_state, $form_id){
 //     // Adjust VBO text labels and set button weightings
@@ -298,11 +184,6 @@ $form['feedback']['#markup'] = '<div class="feeback"><ul><li>Reasons for absence
 $form['feedback']['#weight'] = '-3';
 return $form;
 }
-
-//$custom_strings = variable_get('locale_custom_strings_en', array());
-//$custom_strings['']['Performed Move Member To Prospects on 1 item.'] = 'Changes was completed successfully';
-//variable_set('locale_custom_strings_en', $custom_strings);
-
 
 function members_form_user_login_alter(&$form, &$form_state, $form_id){
 drupal_set_title(t('Log into FlockState'));
@@ -457,7 +338,7 @@ if($form_id == 'visitors_attendance_node_form'){
   $form['field_visitor'][LANGUAGE_NONE]['add_more']['#value'] = 'Add Visitors';
 }
 
-if(($form_id == 'views_form_members_church') || ($form_id == 'views_form_members_ministry') || ($form_id == 'views_form_members_groups') || ($form_id == 'views_form_new_members_church') || ($form_id == 'views_form_new_members_ministry') || ($form_id == 'views_form_members_groups')) {
+if(($form_id == 'views_form_members_church') || ($form_id == 'views_form_members_ministry') || ($form_id == 'views_form_members_groups') || ($form_id == 'views_form_new_members_church') || ($form_id == 'views_form_new_members_all_guests') || ($form_id == 'views_form_members_group') || ($form_id == 'views_form_prospects_ministry') || ($form_id == 'views_form_prospects_church') || ($form_id == 'views_form_prospects_group')) {
 
     // Adjust VBO text labels and set button weightings
   // Set button order with #weight
@@ -465,6 +346,77 @@ if(($form_id == 'views_form_members_church') || ($form_id == 'views_form_members
     // Adjust text
     $form['select']['#title'] = t('Choose Action');
   }
+
+  //Alter Views Mail Form
+  //Send to name
+  unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
+  unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_4']);
+  unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
+  unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_5']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
+  unset($form['to']['views_send_to_name']['#options']['comments_link_pos_9']);
+  unset($form['to']['views_send_to_name']['#options']['node_comment_statistics_comment_count_pos_10']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_11']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_12']);
+  unset($form['to']['views_send_to_name']['#options']['field_address_pos_14']);
+   unset($form['to']['views_send_to_name']['#options']['field_address_pos_4']);
+    unset($form['to']['views_send_to_mail']['#options']['field_address_pos_4']);
+   unset($form['to']['views_send_to_name']['#options']['path_pos_8']);
+    unset($form['to']['views_send_to_name']['#options']['node_new_comments_pos_13']);
+//send to mail
+ unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
+  unset($form['to']['views_send_to_mail']['#options']['history_timestamp_pos_4']);
+  unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
+  unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_5']);
+  unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
+  unset($form['to']['views_send_to_mail']['#options']['comments_link_pos_9']);
+  unset($form['to']['views_send_to_mail']['#options']['node_comment_statistics_comment_count_pos_10']);
+  unset($form['to']['views_send_to_mail']['#options']['nid_pos_11']);
+  unset($form['to']['views_send_to_mail']['#options']['nid_pos_12']);
+  unset($form['to']['views_send_to_mail']['#options']['field_address_pos_14']);
+    unset($form['to']['views_send_to_name']['#options']['field_address_pos_4']);
+      unset($form['to']['views_send_to_mail']['#options']['field_address_pos_4']);
+   unset($form['to']['views_send_to_mail']['#options']['path_pos_8']);
+    unset($form['to']['views_send_to_mail']['#options']['node_new_comments_pos_13']);
+    unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_4']);
+    unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_7']);
+    unset($form['to']['views_send_to_mail']['#options']['history_timestamp_pos_7']);
+
+    unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_8']);
+    unset($form['to']['views_send_to_name']['#options']['field_surname_pos_6']);
+    unset($form['to']['views_send_to_name']['#options']['field_name_pos_5']);
+    unset($form['to']['views_send_to_name']['#options']['field_memail_pos_9']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
+     unset($form['to']['views_send_to_name']['#options']['nid_pos_4']);
+    unset($form['to']['views_send_to_name']['#options']['path_pos_10']);
+    unset($form['to']['views_send_to_name']['#options']['comments_link_pos_9']);
+    unset($form['to']['views_send_to_name']['#options']['node_comment_statistics_comment_count_pos_10']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_11']);
+    unset($form['to']['views_send_to_name']['#options']['nid_pos_12']);
+    unset($form['to']['views_send_to_name']['#options']['node_new_comments_pos_13']);
+    unset($form['to']['views_send_to_name']['#options']['field_address_pos_14']);
+
+    unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_8']);
+    unset($form['to']['views_send_to_mail']['#options']['field_surname_pos_6']);
+    unset($form['to']['views_send_to_mail']['#options']['field_name_pos_5']);
+    unset($form['to']['views_send_to_mail']['#options']['field_memail_pos_9']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
+     unset($form['to']['views_send_to_mail']['#options']['nid_pos_4']);
+    unset($form['to']['views_send_to_mail']['#options']['path_pos_10']);
+    unset($form['to']['views_send_to_mail']['#options']['comments_link_pos_9']);
+    unset($form['to']['views_send_to_mail']['#options']['node_comment_statistics_comment_count_pos_10']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_11']);
+    unset($form['to']['views_send_to_mail']['#options']['nid_pos_12']);
+     unset($form['to']['views_send_to_name']['#options']['nid_pos_8']);
+      unset($form['to']['views_send_to_mail']['#options']['nid_pos_8']);
+    unset($form['to']['views_send_to_mail']['#options']['node_new_comments_pos_13']);
+    unset($form['to']['views_send_to_mail']['#options']['field_address_pos_14']);
+
+    //change name and email
+    $form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
+    $form['to']['views_send_to_mail']['#options']['field_memail_pos_6'] = 'Email';
+     unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
+     unset($form['to']['views_send_to_name']['#options']['field_memail_pos_6']);
 }
 return $form;
 }
