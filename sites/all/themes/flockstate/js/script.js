@@ -29,7 +29,6 @@
             //ical button
             jQuery('.ical-icon img').removeAttr('src');
             jQuery('.ical-icon').text('Subscribe to calendar').prepend('<i class="fa fa-calendar"></i> ');
-            jQuery('.view-birthday-of-members .feed-icon a').addClass('button button--winona button--border-thin button--text-thick button--inverted');
             jQuery('#edit-keys-wrapper label').append('<i class="fa fa-search"></i>');
 
 
