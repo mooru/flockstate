@@ -14,15 +14,13 @@ return $items;
 }
 
 function members_form_members_node_form_alter(&$form, &$form_state, $form_id) {
-  // unset($form['field_discipleship_status']['und']['#options']['_none']);
   unset($form['field_gender']['und']['#options']['_none']);
 drupal_set_title(t('Members'));
 
-if (count($form['field_church_']['und']['#options']) > 1){
+if(count($form['field_church_']['und']['#options']) > 1){
    $form['field_church_']['und']['#required'] = TRUE;
  }
 else{
-   //$form['field_church_']['und']['#required'] = FALSE;
  unset($form['field_church_']);
  }
 
@@ -346,78 +344,94 @@ if(($form_id == 'views_form_members_church') || ($form_id == 'views_form_members
     // Adjust text
     $form['select']['#title'] = t('Choose Action');
   }
+}
+
+  if(($form_id == 'views_form_members_church') || ($form_id == 'views_form_members_ministry') || ($form_id == 'views_form_members_groups')){
 
   //Alter Views Mail Form
   //Send to name
   unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
-  unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_4']);
+  unset($form['to']['views_send_to_name']['#options']['path_pos_10']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_11']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_12']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_4']);
+  unset($form['to']['views_send_to_name']['#options']['field_name_pos_5']);
+  unset($form['to']['views_send_to_name']['#options']['field_surname_pos_6']);
+  unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_7']);
+  unset($form['to']['views_send_to_name']['#options']['field_memail_pos_9']);
+  unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_8']);
+   $form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
+
+  unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
+  unset($form['to']['views_send_to_mail']['#options']['path_pos_10']);
+  unset($form['to']['views_send_to_mail']['#options']['nid_pos_11']);
+  unset($form['to']['views_send_to_mail']['#options']['nid_pos_12']);
+  unset($form['to']['views_send_to_mail']['#options']['nid_pos_4']);
+  unset($form['to']['views_send_to_mail']['#options']['field_name_pos_5']);
+  unset($form['to']['views_send_to_mail']['#options']['field_surname_pos_6']);
+  unset($form['to']['views_send_to_mail']['#options']['history_timestamp_pos_7']);
+  $form['to']['views_send_to_mail']['#options']['field_memail_pos_9'] = 'Email';
+  unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
+  unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_8']);
+   }
+
+if(($form_id == 'views_form_new_members_church') || ($form_id == 'views_form_new_members_all_guests') || ($form_id == 'views_form_new_members_group')){
+  //Alter Views Mail Form
+  //Send to name
+  unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
   unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
+  $form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
+  unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_4']);
   unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_5']);
+  unset($form['to']['views_send_to_name']['#options']['field_memail_pos_6']);
   unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
+  unset($form['to']['views_send_to_name']['#options']['path_pos_8']);
   unset($form['to']['views_send_to_name']['#options']['comments_link_pos_9']);
   unset($form['to']['views_send_to_name']['#options']['node_comment_statistics_comment_count_pos_10']);
   unset($form['to']['views_send_to_name']['#options']['nid_pos_11']);
   unset($form['to']['views_send_to_name']['#options']['nid_pos_12']);
+  unset($form['to']['views_send_to_name']['#options']['node_new_comments_pos_13']);
   unset($form['to']['views_send_to_name']['#options']['field_address_pos_14']);
-   unset($form['to']['views_send_to_name']['#options']['field_address_pos_4']);
-    unset($form['to']['views_send_to_mail']['#options']['field_address_pos_4']);
-   unset($form['to']['views_send_to_name']['#options']['path_pos_8']);
-    unset($form['to']['views_send_to_name']['#options']['node_new_comments_pos_13']);
-//send to mail
- unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
+
+  unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
   unset($form['to']['views_send_to_mail']['#options']['history_timestamp_pos_4']);
-  unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
   unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_5']);
+  $form['to']['views_send_to_mail']['#options']['field_memail_pos_6'] = 'Email';
   unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
+  unset($form['to']['views_send_to_mail']['#options']['path_pos_8']);
   unset($form['to']['views_send_to_mail']['#options']['comments_link_pos_9']);
   unset($form['to']['views_send_to_mail']['#options']['node_comment_statistics_comment_count_pos_10']);
   unset($form['to']['views_send_to_mail']['#options']['nid_pos_11']);
   unset($form['to']['views_send_to_mail']['#options']['nid_pos_12']);
+  unset($form['to']['views_send_to_mail']['#options']['node_new_comments_pos_13']);
   unset($form['to']['views_send_to_mail']['#options']['field_address_pos_14']);
-    unset($form['to']['views_send_to_name']['#options']['field_address_pos_4']);
-      unset($form['to']['views_send_to_mail']['#options']['field_address_pos_4']);
-   unset($form['to']['views_send_to_mail']['#options']['path_pos_8']);
-    unset($form['to']['views_send_to_mail']['#options']['node_new_comments_pos_13']);
-    unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_4']);
-    unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_7']);
-    unset($form['to']['views_send_to_mail']['#options']['history_timestamp_pos_7']);
+   }
 
-    unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_8']);
-    unset($form['to']['views_send_to_name']['#options']['field_surname_pos_6']);
-    unset($form['to']['views_send_to_name']['#options']['field_name_pos_5']);
-    unset($form['to']['views_send_to_name']['#options']['field_memail_pos_9']);
-    unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
-     unset($form['to']['views_send_to_name']['#options']['nid_pos_4']);
-    unset($form['to']['views_send_to_name']['#options']['path_pos_10']);
-    unset($form['to']['views_send_to_name']['#options']['comments_link_pos_9']);
-    unset($form['to']['views_send_to_name']['#options']['node_comment_statistics_comment_count_pos_10']);
-    unset($form['to']['views_send_to_name']['#options']['nid_pos_11']);
-    unset($form['to']['views_send_to_name']['#options']['nid_pos_12']);
-    unset($form['to']['views_send_to_name']['#options']['node_new_comments_pos_13']);
-    unset($form['to']['views_send_to_name']['#options']['field_address_pos_14']);
+if(($form_id == 'views_form_new_members_all_guests') || ($form_id == 'views_form_members_group') || ($form_id == 'views_form_prospects_ministry') || ($form_id == 'views_form_prospects_church') || ($form_id == 'views_form_prospects_group')){
 
-    unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_8']);
-    unset($form['to']['views_send_to_mail']['#options']['field_surname_pos_6']);
-    unset($form['to']['views_send_to_mail']['#options']['field_name_pos_5']);
-    unset($form['to']['views_send_to_mail']['#options']['field_memail_pos_9']);
-    unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
-     unset($form['to']['views_send_to_mail']['#options']['nid_pos_4']);
-    unset($form['to']['views_send_to_mail']['#options']['path_pos_10']);
-    unset($form['to']['views_send_to_mail']['#options']['comments_link_pos_9']);
-    unset($form['to']['views_send_to_mail']['#options']['node_comment_statistics_comment_count_pos_10']);
-    unset($form['to']['views_send_to_mail']['#options']['nid_pos_11']);
-    unset($form['to']['views_send_to_mail']['#options']['nid_pos_12']);
-     unset($form['to']['views_send_to_name']['#options']['nid_pos_8']);
-      unset($form['to']['views_send_to_mail']['#options']['nid_pos_8']);
-    unset($form['to']['views_send_to_mail']['#options']['node_new_comments_pos_13']);
-    unset($form['to']['views_send_to_mail']['#options']['field_address_pos_14']);
+  //Alter Views Mail Form
+  //Send to name
 
-    //change name and email
-    $form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
-    $form['to']['views_send_to_mail']['#options']['field_memail_pos_6'] = 'Email';
-     unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
-     unset($form['to']['views_send_to_name']['#options']['field_memail_pos_6']);
-}
+
+  unset($form['to']['views_send_to_name']['#options']['counter_pos_2']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_7']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_8']);
+  unset($form['to']['views_send_to_name']['#options']['field_memail_pos_6']);
+  unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_5']);
+   unset($form['to']['views_send_to_name']['#options']['field_address_pos_4']);
+   $form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
+
+  unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
+  unset($form['to']['views_send_to_mail']['#options']['nid_pos_7']);
+  unset($form['to']['views_send_to_mail']['#options']['nid_pos_8']);
+  $form['to']['views_send_to_mail']['#options']['field_memail_pos_6'] = 'Email';
+  unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_5']);
+   unset($form['to']['views_send_to_mail']['#options']['field_address_pos_4']);
+  unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
+
+   }
+
+
 return $form;
 }
 
@@ -533,3 +547,4 @@ function members_views_plugins_alter(&$plugins) {
   $plugins['style']['views_data_export_xls']['export feed icon'] = 'sites/default/files/xlsx.png';
    $plugins['style']['views_data_export_txt']['export feed icon'] = 'sites/default/files/txts.png';
 }
+
