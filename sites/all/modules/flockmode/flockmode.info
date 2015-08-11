@@ -1,0 +1,6 @@
+name = Flockmode
+description = Creates a custom module for the sake of explaining ctools modal popup via custom programming.
+core = 7.x
+package = Other
+dependencies[] = ctools
+

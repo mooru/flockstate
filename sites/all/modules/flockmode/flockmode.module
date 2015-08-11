@@ -1,0 +1,92 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the flockmode module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+ function flockmode_install() {
+   // Increase the module weight.
+   db_update('system')
+   ->fields(array('weight' => 1))
+   ->condition('type', 'module')
+   ->condition('name', 'flockmode')
+   ->execute();
+ }
+
+ /**
+   *  Implements hook_menu()
+   */
+   // function flockmode_menu() {
+   //   $items['flockmode/%ctools_js'] = array(
+   //    'title' => 'My first ctools modal window',
+   //    'page arguments' => array(1),
+   //    'page callback' => 'ctools_modal_page',
+   //    'access callback' => TRUE,
+   //    'type' => MENU_NORMAL_ITEM,
+   //   );
+   //   return $items;
+   // }
+
+   /**
+ * A modal static page callback.
+ * @param   $js boolean     Determines if JS is enabled at user's browser end or not.
+ * @return      string      The HTML, parsed by Drupal to show the login form.
+ */
+ function ctools_modal_page($js = NULL) {
+   if ($js) {
+     // Required includes for ctools to work:
+     ctools_include('modal');
+     ctools_include('ajax');
+     $form_state = array(
+       'ajax' => TRUE,
+       'title' => t('Ctools modal popup - user login form'),
+     );
+     $output = ctools_modal_form_wrapper('user_login', $form_state);
+     print ajax_render($output);
+   } else {
+     return drupal_get_form('user_login');
+   }
+ }
+
+ function flockmode_menu() {
+  $items['flockmode/%ctools_js'] = array(
+    'title' => 'My first ctools modal window',
+    'page arguments' => array(1),
+    'page callback' => 'ctools_modal_page',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['ctools_ajax_sample'] = array(
+    'title' => 'Ctools Login Form Popup',
+    'page callback' => 'ctools_ajax_sample_page',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Page callback to display login link.
+ */
+ function ctools_ajax_sample_page() {
+   // Required includes for ctools to work:
+   ctools_include('ajax');
+   ctools_include('modal');
+   ctools_modal_add_js();
+   $str = "";
+   if(user_is_anonymous()) {
+     $str = "Hi, this is my brand new page, created just to show ";
+     $str .= l("Ctools Login Form Link", "flockmode/nojs", array(
+       "attributes" => array(
+     "class" => array(
+     "ctools-use-modal"
+   )
+     )
+   )
+     );
+   }
+   return $str;
+}

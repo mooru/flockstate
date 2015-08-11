@@ -1,0 +1,12 @@
+--- a/rules_forms.module	2012-07-10 12:00:44.000000000 +0400
++++ b/rules_forms.module	2012-07-18 23:17:02.000000000 +0400
+@@ -368,6 +368,9 @@ function rules_forms_add_popups(&$form, 
+  *   to demonstrate the structure of an array to the user.
+  */
+ function _rules_forms_display_info(&$element, $data, $level = 1, $delta = NULL) {
++  if (is_object($data)) {
++    $data = (array) $data;
++  }
+   if (is_array($data) && $level != 3) {
+     $element .= $delta;
+     $element .= '<ul>';

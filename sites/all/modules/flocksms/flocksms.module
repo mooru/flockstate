@@ -1,0 +1,67 @@
+<?php
+/**
+ * Implements hook_action_info().
+ */
+function flocksms_action_info() {
+  return array(
+    'flocksms_action_callback_name' => array(
+      'type' => 'entity', // Can be file, term, user, etc.
+      'label' => t('Your label'),
+      'configurable' => TRUE, //  Needs config form
+      'behavior' => array('view_property'), // Uses view access rights
+      'triggers' => array('any'), // Works always
+    ),
+  );
+}
+
+/**
+ * Return a form definition so the action can be configured.
+ */
+function flocksms_action_callback_name_form($context) {
+  // Set default values for form.
+  if (!isset($context['recipient'])) {
+    $context['recipient'] = '';
+  }
+
+  $form['recipient'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Recipient'),
+    '#default_value' => $context['recipient'],
+    '#maxlength' => '254',
+    '#description' => t('The email address to which the message should be sent OR enter [node:author:mail], [comment:author:mail], etc. if you would like to send an e-mail to the author of the original post.'),
+  );
+
+  return $form;
+}
+
+/**
+ * Validate flocksms_action_callback_name form submissions.
+ */
+function flocksms_vbo_action_send_node_validate($form, $form_state) {
+  $form_values = $form_state['values'];
+  // Validate the configuration form.
+  if (!valid_email_address($form_values['recipient'])) {
+    form_set_error('recipient', t('Enter a valid email address.'));
+  }
+}
+
+/**
+ * Process flocksms_action_callback_name form submissions.
+ */
+function flocksms_vbo_action_send_node_submit($form, $form_state) {
+  $form_values = $form_state['values'];
+  // Process the HTML form to store configuration. The keyed array that
+  // we return will be serialized to the database.
+  $params = array(
+    'recipient' => $form_values['recipient'],
+  );
+  return $params;
+}
+
+
+/**
+ * Add action callback where you perform the action.
+ */
+function flocksms_action_callback_name($entity, $context) {
+  // Do the magic here.
+}

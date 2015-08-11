@@ -1,0 +1,102 @@
+<?php
+
+/**
+ * @file Provide domain tokens to send user with associated domains.
+ */
+
+/**
+ * Implements hook_mail_alter().
+ */
+function domain_token_mail_alter(&$message) {
+  if ($message['id'] == 'user_status_activated') {
+    $account = $message['params']['account'];
+    $site_name = domain_token_site_name($account);
+
+    $from = $message['from'];
+    $message['from'] = $message['headers']['from'] = '"' . $site_name . '" <' . $from . '>';
+  }
+}
+
+/**
+ * Implements hook_token_info_alter().
+ */
+function domain_token_token_info_alter(&$data) {
+  // Add/modify user tokens for user's assigned domains.
+  $data['tokens']['user']['one-time-domain-login-url'] = array(
+    'name' => t("One time log-in url for user's domain"),
+    'description' => t("This URL of user's domain log-in."),
+  );
+  $data['tokens']['user']['site-domain-name'] = array(
+    'name' => t("User's domain site name"),
+    'description' => t("User's domain site name."),
+  );
+  $data['tokens']['user']['site-domain-login-url'] = array(
+    'name' => t("User's domain login url"),
+    'description' => t("User's domain login url."),
+  );
+}
+
+/**
+ * Implements hook_tokens_alter().
+ */
+function domain_token_tokens_alter(array &$replacements, array $context) {
+  if ($context['type'] == 'user' && !empty($context['data']['user'])) {
+    $account = $context['data']['user'];
+    $replacements['[user:one-time-domain-login-url]'] = domain_token_pass_reset_url($account);
+    $replacements['[user:site-domain-name]'] = domain_token_site_name($account);
+    $replacements['[user:site-domain-login-url]'] = domain_token_get_domain_login_url($account);
+  }
+}
+
+/**
+ * Helper function to get user's first subdomain.
+ *
+ * @param $account object
+ *   User's account to send email to.
+ *
+ * @return $domain string
+ *   One domain name this account is associated with.
+ */
+function domain_token_get_user_subdomain($account) {
+  $domains = domain_domains();
+  foreach ($account->domain_user as $domain_id) {
+    $domain = check_plain($domains[$domain_id]['subdomain']);
+    // When we get the first domain, we break.
+    break;
+  }
+  return $domain;
+}
+
+/**
+ * Helper function to get reset url for user's domain.
+ *
+ * @param $account object
+ *   User's account to send email to.
+ */
+function domain_token_pass_reset_url($account) {
+  $timestamp = REQUEST_TIME;
+  $domain = domain_token_get_user_subdomain($account);
+  return url("http://$domain/user/reset/$account->uid/$timestamp/" . user_pass_rehash($account->pass, $timestamp, $account->login, $account->uid), array('absolute' => TRUE));
+}
+
+/**
+ * Helper function to get user's domain site name.
+ *
+ * @param $account object
+ *   User's account to send email to.
+ */
+function domain_token_site_name($account) {
+  $list = _domain_user_list($account->uid);
+  return $list[0];
+}
+
+/**
+ * Helper function to get user's domain login url.
+ *
+ * @param $account object
+ *   User's account to send email to.
+ */
+function domain_token_get_domain_login_url($account) {
+  $domain = domain_token_get_user_subdomain($account);
+  return url("http://$domain/user", array('absolute' => TRUE));
+}

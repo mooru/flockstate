@@ -1,0 +1,103 @@
+diff --git a/message_subscribe.rules.inc b/message_subscribe.rules.inc
+new file mode 100644
+index 0000000..a53a940
+--- /dev/null
++++ b/message_subscribe.rules.inc
+@@ -0,0 +1,97 @@
++<?php
++
++/**
++ * @file
++ * Rules integration for the Message subscribe module.
++ *
++ * @addtogroup rules
++ * @{
++ */
++
++/**
++ * Implements hook_rules_action_info().
++ */
++function message_subscribe_rules_action_info() {
++  $items = array();
++  $items['message_subscribe_process'] = array(
++    'label' => t('Send Message with Message subscribe'),
++    'group' => t('Message subscribe'),
++    'parameter' => array(
++      'message' => array(
++        'type' => 'message',
++        'label' => t('Message'),
++        'description' => t('The message to be processed and sent using Message subscribe.'),
++      ),
++      'entity' => array(
++        'type' => 'entity',
++        'label' => t('Entity'),
++        'restriction' => 'selector',        
++        'description' => t('The entity to be processed and sent using Message subscribe.'),
++      ), 
++      'rendered_subject_field' => array(
++        'type' => 'token',
++        'label' => t('Rendered subject field'),
++        'description' => t('The field to save the rendered subject.'),
++        'default value' => FALSE,
++        'optional' => TRUE,
++        'options list' => 'message_subscribe_field_text_list',
++      ),
++      'rendered_body_field' => array(
++        'type' => 'token',
++        'label' => t('Body subject field'),
++        'description' => t('The field to save the rendered body.'),
++        'default value' => FALSE,
++        'optional' => TRUE,
++        'options list' => 'message_subscribe_field_text_list',
++      ),
++    ),
++    'base' => 'message_subscribe_rules_process',
++  );
++
++  return $items;
++}
++
++/**
++ * Action: Process and send Message.
++ */
++function message_subscribe_rules_process(Message $message, $entity, $rendered_subject_field, $rendered_body_field) {
++
++  if ($rendered_subject_field && $rendered_body_field) {
++    $options['rendered fields'] = array(
++      'message_subscribe_email_subject' => $rendered_subject_field,
++      'message_subscribe_email_body' => $rendered_body_field,
++    );
++  }
++  
++  // TODO: add option for other notifiers than email
++  message_subscribe_send_message($entity->type(), $entity->value(), $message, array('email' => $options));
++}
++
++/**
++ * Options list; Return the text field attached to the selected message
++ */
++function message_subscribe_field_text_list() {
++  $options = array(FALSE => '- ' . t('None') . ' -');
++
++
++  foreach (field_info_instances('message') as $message_type => $instances) {
++    foreach ($instances as $field_name => $instance) {
++      if (!empty($options[$field_name])) {
++        // Field is already in the options array.
++        continue;
++      }
++      $field = field_info_field($field_name);
++      if (!in_array($field['type'], array('text', 'text_long', 'text_with_summary'))) {
++        // Field is not a text field.
++        continue;
++      }
++
++      $options[$field_name] = $instance['label'];
++    }
++  }
++
++  return $options;
++}
++/**
++ * @}
++ */

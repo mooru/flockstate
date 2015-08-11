@@ -1,0 +1,13 @@
+diff --git a/domain_bonus_login_restrict/domain_bonus_login_restrict.module b/domain_bonus_login_restrict/domain_bonus_login_restrict.module
+index 42cb944..ae310c8 100644
+--- a/domain_bonus_login_restrict/domain_bonus_login_restrict.module
++++ b/domain_bonus_login_restrict/domain_bonus_login_restrict.module
+@@ -91,7 +91,7 @@ function _domain_bonus_login_restrict_validate($form, &$form_state) {
+           !user_access('login to any domain', $account)) {
+ 
+           // Display error on form.
+-          form_set_error('name', t('Sorry, unrecognized UBERNAME or password.'
++          form_set_error('name', t('Sorry, unrecognized username or password.'
+             . ' <a href="@password">Have you forgotten your password?</a>',
+             array('@password' => url('user/password'))));
+ 

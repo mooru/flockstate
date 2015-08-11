@@ -1,0 +1,14 @@
+name = User expire
+description = Allows an administrator to define a date on which to expire a user account.
+package = User management
+core = 7.x
+
+files[] = user_expire.module
+files[] = user_expire.test
+
+; Information added by Drupal.org packaging script on 2014-03-04
+version = "7.x-1.2"
+core = "7.x"
+project = "user_expire"
+datestamp = "1393938807"
+

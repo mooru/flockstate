@@ -1,0 +1,13 @@
+name = Domain Token
+description = Provide domain associated tokens for email sending.
+
+package = Domain Access
+dependencies[] = domain
+core = 7.x
+
+; Information added by Drupal.org packaging script on 2015-03-24
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "domain_token"
+datestamp = "1427159282"
+
