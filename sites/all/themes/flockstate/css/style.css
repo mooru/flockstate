@@ -2508,5 +2508,5 @@ td.field-multiple-drag {
 }
 
 div#edit-field-parents {
-    overflow: visible;
+    overflow: visible !important;
 }
