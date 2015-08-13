@@ -113,8 +113,8 @@
 .until.widget-date_popup.label-above,
 .form-item-field-birthday-und-0-rrule-show-exceptions,
 .form-item-field-birthday-und-0-rrule-show-additions,
-.form-item-field-wedding-anniversary-und-0-rrule-show-exceptions,
-.form-item-field-wedding-anniversary-und-0-rrule-show-additions,
+.form-item-field-hwaf-und-0-rrule-show-exceptions,
+.form-item-field-hwaf-und-0-rrule-show-additions,
 .form-item-field-birthday-prospects-und-0-rrule-show-exceptions,
 .form-item-field-birthday-prospects-und-0-rrule-show-additions{
   display: none !important;
@@ -124,9 +124,8 @@
 .form-item.form-type-textfield.form-item-field-birthday-und-0-rrule-yearly-INTERVAL,
 .date-clear.range-of-repeat,
 .form-item.form-type-textfield.form-item-field-birthday-prospects-und-0-rrule-yearly-INTERVAL,
-.form-item.form-type-textfield.form-item-field-wedding-anniversary-und-0-rrule-yearly-INTERVAL,
-.form-item.form-type-date-repeat-form-element-radios.form-item-field-birthday-und-0-rrule-range-of-repeat,
-.date-repeat-input {
+.form-item.form-type-textfield.form-item-field-hwaf-und-0-rrule-yearly-INTERVAL,
+.form-item.form-type-date-repeat-form-element-radios.form-item-field-birthday-und-0-rrule-range-of-repeat{
   display: none;
 
 }

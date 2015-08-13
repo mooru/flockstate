@@ -117,7 +117,7 @@
 
                // Repeat field placeholder
             jQuery('#edit-field-birthday-und-0-rrule-count-child')
-                .add('#edit-field-wedding-anniversary-und-0-rrule-count-child')
+                .add('#edit-field-hwaf-und-0-rrule-count-child')
                 .add('#edit-field-birthday-prospects-und-0-rrule-count-child')
                 .attr('value', 100);
 
@@ -139,19 +139,19 @@
 
 
             //Wedding Anniversary date repeat field
-            jQuery('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="WEEKLY"]').attr('selected', null);
-            jQuery('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="YEARLY"]').attr('selected', 'selected');
+            jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="WEEKLY"]').attr('selected', null);
+            jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="YEARLY"]').attr('selected', 'selected');
 
-            jQuery('#edit-field-wedding-anniversary-und-0-rrule-yearly').css('display', 'block');
-            jQuery('#edit-field-wedding-anniversary-und-0-rrule-weekly').css('display', 'none');
-            jQuery('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="DAILY"]')
-                .add('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="WEEKLY"]')
-                .add('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="MONTHLY"]')
+            jQuery('#edit-field-hwaf-und-0-rrule-yearly').css('display', 'block');
+            jQuery('#edit-field-hwaf-und-0-rrule-weekly').css('display', 'none');
+            jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="DAILY"]')
+                .add('#edit-field-hwaf-und-0-rrule-freq option[value="WEEKLY"]')
+                .add('#edit-field-hwaf-und-0-rrule-freq option[value="MONTHLY"]')
                 .remove();
 
-            jQuery('#edit_field_wedding_anniversary_und_0_rrule_freq_chosen li.active-result')
+            jQuery('#edit_field_hwaf_und_0_rrule_freq_chosen li.active-result')
                 .eq(1).removeClass('result-selected');
-            jQuery('#edit_field_wedding_anniversary_und_0_rrule_freq_chosen li.active-result')
+            jQuery('#edit_field_hwaf_und_0_rrule_freq_chosen li.active-result')
                 .eq(3).addClass('result-selected');
 
             //Prospects date repeat field

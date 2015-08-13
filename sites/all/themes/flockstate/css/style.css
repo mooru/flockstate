@@ -1674,7 +1674,8 @@ div#main-navigation.clearfix.blockFloat-processed.blockFloat-0 {
 a.ical-icon.btn.btn-primary.btn-lg {
     margin-top: 10px;
 }
-div.form-item.form-type-select.form-item-feeds-FeedsCSVParser-delimiter, div.form-item.form-type-checkbox.form-item-feeds-FeedsCSVParser-no-headers, fieldset#edit-source-status, #node-906 img.file-icon, .logged-in #header, .not-logged-in.page-user #header, .not-logged-in.page-user #main-navigation, .not-logged-in.page-user #subfooter, .page-admin-people-create fieldset#edit-profile-main, .page-admin-people-create .reado, .page-admin-people-create .group-user h3, .page-user-edit div#edit-field-message, .page-user-edit .group-user h3, div.form-item.form-type-checkbox.form-item-field-user-comment-notify-und, fieldset#edit-comment-notify-settings, div.form-item.form-type-textfield.form-item-field-birthday-und-0-value-time, .node-form div > div.vertical-tabs, div.form-item.form-type-textfield.form-item-field-wedding-anniversary-und-0-value-time, .simplenews-template-footer, tr.view-subfooter-number, div.form-item.form-type-textfield.form-item-field-birthday-member-und-0-value-time label, #datereminder-form div.form-item.form-type-checkbox.form-item-send-now, .page-admin-people-create #block-system-help > div > p, #edit-additional > legend > span, #edit-mail > div > div.text-format-wrapper > div.description, #node-918 > footer, .form-item.form-type-item, #edit-field-group-participation-und > div:nth-child(1), div#edit-bundle-group-members-field-attendance-service-und > div:nth-child(1), #edit-field-attendance-visitor-und > div:nth-child(1), .maintenance-page.in-maintenance #header, .maintenance-page.in-maintenance #footer, .domain-flockstate-com .gotosite, .node-members-form div .picme, .node-type-report ul.tabs.primary, .node-type-attendance ul.tabs.primary, .node-type-family-members ul.tabs.primary, .node-type-group-members ul.tabs.primary, .node-type-role ul.tabs.primary, .node-type-discipleship ul.tabs.primary, .node-type-minstry ul.tabs.primary, .node-type-family ul.tabs.primary, .node-type-groups-and-departments ul.tabs.primary, .node-type-group-type ul.tabs.primary, .node-type-service-type ul.tabs.primary, .node-type-church ul.tabs.primary, .node-type-training ul.tabs.primary {
+div.form-item.form-type-select.form-item-feeds-FeedsCSVParser-delimiter, div.form-item.form-type-checkbox.form-item-feeds-FeedsCSVParser-no-headers, fieldset#edit-source-status, #node-906 img.file-icon, .logged-in #header, .not-logged-in.page-user #header, .not-logged-in.page-user #main-navigation, .not-logged-in.page-user #subfooter, .page-admin-people-create fieldset#edit-profile-main, .page-admin-people-create .reado, .page-admin-people-create .group-user h3, .page-user-edit div#edit-field-message, .page-user-edit .group-user h3, div.form-item.form-type-checkbox.form-item-field-user-comment-notify-und, fieldset#edit-comment-notify-settings, div.form-item.form-type-textfield.form-item-field-birthday-und-0-value-time, .node-form div > div.vertical-tabs, div.form-item.form-type-textfield.form-item-field-wedding-anniversary-und-0-value-time, .simplenews-template-footer, tr.view-subfooter-number, div.form-item.form-type-textfield.form-item-field-birthday-member-und-0-value-time label,
+#datereminder-form div.form-item.form-type-checkbox.form-item-send-now, .page-admin-people-create #block-system-help > div > p, #edit-additional > legend > span, #edit-mail > div > div.text-format-wrapper > div.description, #node-918 > footer, .form-item.form-type-item, #edit-field-group-participation-und > div:nth-child(1), div#edit-bundle-group-members-field-attendance-service-und > div:nth-child(1), #edit-field-attendance-visitor-und > div:nth-child(1), .maintenance-page.in-maintenance #header, .maintenance-page.in-maintenance #footer, .domain-flockstate-com .gotosite, .node-members-form div .picme, .node-type-report ul.tabs.primary, .node-type-attendance ul.tabs.primary, .node-type-family-members ul.tabs.primary, .node-type-group-members ul.tabs.primary, .node-type-role ul.tabs.primary, .node-type-discipleship ul.tabs.primary, .node-type-minstry ul.tabs.primary, .node-type-family ul.tabs.primary, .node-type-groups-and-departments ul.tabs.primary, .node-type-group-type ul.tabs.primary, .node-type-service-type ul.tabs.primary, .node-type-church ul.tabs.primary, .node-type-training ul.tabs.primary {
     display: none;
 }
 .maintenance-page {
@@ -1961,7 +1962,9 @@ span.description{
 
 #edit_field_birthday_und_0_rrule_freq_chosen .chosen-drop,
 #edit_field_birthday_prospects_und_0_rrule_freq_chosen .chosen-drop,
-#edit_field_wedding_anniversary_und_0_rrule_freq_chosen .chosen-drop{
+#edit_field_wedding_anniversary_und_0_rrule_freq_chosen .chosen-drop,
+.form-item.form-type-checkbox.form-item-field-hwaf-und-0-rrule-show-exceptions,
+.form-item.form-type-checkbox.form-item-field-hwaf-und-0-rrule-show-additions{
   display: none !important;
 
 }
@@ -2495,4 +2498,15 @@ a[href*="subuser/create"] {
 
 }
 
+/*Applied styles to implement multiple select module */
+.form-select{
+    width:100% !important;
+}
 
+td.field-multiple-drag {
+    display: none;
+}
+
+div#edit-field-parents {
+    overflow: visible;
+}
