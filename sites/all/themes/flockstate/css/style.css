@@ -1962,7 +1962,7 @@ span.description{
 
 #edit_field_birthday_und_0_rrule_freq_chosen .chosen-drop,
 #edit_field_birthday_prospects_und_0_rrule_freq_chosen .chosen-drop,
-#edit_field_wedding_anniversary_und_0_rrule_freq_chosen .chosen-drop,
+#edit_field_hwaf_und_0_rrule_freq_chosen .chosen-drop,
 .form-item.form-type-checkbox.form-item-field-hwaf-und-0-rrule-show-exceptions,
 .form-item.form-type-checkbox.form-item-field-hwaf-und-0-rrule-show-additions{
   display: none !important;
@@ -2509,4 +2509,12 @@ td.field-multiple-drag {
 
 div#edit-field-parents {
     overflow: visible !important;
+}
+
+#edit_field_hwaf_und_0_rrule_freq_chosen .chosen-container-single .chosen-search {
+    display: none !important;
+}
+
+#edit_field_hwaf_und_0_rrule_freq_chosen .chosen-container-single .chosen-search {
+    display: none;
 }

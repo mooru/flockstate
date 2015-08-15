@@ -139,15 +139,12 @@
 
 
             //Wedding Anniversary date repeat field
-            jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="WEEKLY"]').attr('selected', null);
+            jQuery('#edit_field_hwaf-und-0-rrule-freq option[value="WEEKLY"]').attr('selected', null);
             jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="YEARLY"]').attr('selected', 'selected');
 
             jQuery('#edit-field-hwaf-und-0-rrule-yearly').css('display', 'block');
             jQuery('#edit-field-hwaf-und-0-rrule-weekly').css('display', 'none');
-            jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="DAILY"]')
-                .add('#edit-field-hwaf-und-0-rrule-freq option[value="WEEKLY"]')
-                .add('#edit-field-hwaf-und-0-rrule-freq option[value="MONTHLY"]')
-                .remove();
+            jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="DAILY"]').add('#edit-field-hwaf-und-0-rrule-freq option[value="WEEKLY"]').add('#edit-field-hwaf-und-0-rrule-freq option[value="MONTHLY"]').remove();
 
             jQuery('#edit_field_hwaf_und_0_rrule_freq_chosen li.active-result')
                 .eq(1).removeClass('result-selected');
