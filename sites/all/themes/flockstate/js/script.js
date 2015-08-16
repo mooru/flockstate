@@ -15,7 +15,7 @@
             jQuery('.block-views h2').eq(0).append(' <i class="fa fa-filter"></i>');
             jQuery('#block-views-categories-block-1 h2').add('#block-views-categories-block-2 h2').append(' <i class="fa fa-tag"></i>');
 
-            jQuery("a[href*='sample.csv']").text('Download Sample Template').prepend('<i class="fa fa-file"></i> ');
+            jQuery("a[href*='sample.csv']").addClass('btn btn-primary btn-lg').text('Download Sample Template').prepend('<i class="fa fa-file"></i> ');
 
             jQuery('#block-block-1 h2').append('<i class="fa fa-calendar"></i>');
 
@@ -24,11 +24,12 @@
             jQuery('.tabledrag-toggle-weight-wrapper').hide();
 
             //import template link
-            jQuery('.item-list ul li a[href*="template"]').prepend('<i class="fa fa-cloud-download"></i> ');
+            jQuery('.item-list ul li a[href*="template"]').addClass("btn-primary btn-lg btn").prepend('<i class="fa fa-cloud-download"></i> ');
 
             //ical button
             jQuery('.ical-icon img').removeAttr('src');
             jQuery('.ical-icon').text('Subscribe to calendar').prepend('<i class="fa fa-calendar"></i> ');
+
             jQuery('#edit-keys-wrapper label').append('<i class="fa fa-search"></i>');
 
 
@@ -117,6 +118,7 @@
 
                // Repeat field placeholder
             jQuery('#edit-field-birthday-und-0-rrule-count-child')
+                .add('#edit-field-wedding-anniversary-und-0-rrule-count-child')
                 .add('#edit-field-hwaf-und-0-rrule-count-child')
                 .add('#edit-field-birthday-prospects-und-0-rrule-count-child')
                 .attr('value', 100);
@@ -139,17 +141,38 @@
 
 
             //Wedding Anniversary date repeat field
-            jQuery('#edit_field_hwaf-und-0-rrule-freq option[value="WEEKLY"]').attr('selected', null);
+            jQuery('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="WEEKLY"]').attr('selected', null);
+            jQuery('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="YEARLY"]').attr('selected', 'selected');
+
+            jQuery('#edit-field-wedding-anniversary-und-0-rrule-yearly').css('display', 'block');
+            jQuery('#edit-field-wedding-anniversary-und-0-rrule-weekly').css('display', 'none');
+            jQuery('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="DAILY"]')
+                .add('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="WEEKLY"]')
+                .add('#edit-field-wedding-anniversary-und-0-rrule-freq option[value="MONTHLY"]')
+                .remove();
+
+            jQuery('#edit_field_wedding_anniversary_und_0_rrule_freq_chosen li.active-result')
+                .eq(1).removeClass('result-selected');
+            jQuery('#edit_field_wedding_anniversary_und_0_rrule_freq_chosen li.active-result')
+                .eq(3).addClass('result-selected');
+
+        //Wedding Anniversary date repeat field for members
+            jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="WEEKLY"]').attr('selected', null);
             jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="YEARLY"]').attr('selected', 'selected');
 
             jQuery('#edit-field-hwaf-und-0-rrule-yearly').css('display', 'block');
             jQuery('#edit-field-hwaf-und-0-rrule-weekly').css('display', 'none');
-            jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="DAILY"]').add('#edit-field-hwaf-und-0-rrule-freq option[value="WEEKLY"]').add('#edit-field-hwaf-und-0-rrule-freq option[value="MONTHLY"]').remove();
+            jQuery('#edit-field-hwaf-und-0-rrule-freq option[value="DAILY"]')
+                .add('#edit-field-hwaf-und-0-rrule-freq option[value="WEEKLY"]')
+                .add('#edit-field-hwaf-und-0-rrule-freq option[value="MONTHLY"]')
+                .remove();
 
             jQuery('#edit_field_hwaf_und_0_rrule_freq_chosen li.active-result')
                 .eq(1).removeClass('result-selected');
             jQuery('#edit_field_hwaf_und_0_rrule_freq_chosen li.active-result')
                 .eq(3).addClass('result-selected');
+
+
 
             //Prospects date repeat field
             jQuery('#edit-field-birthday-prospects-und-0-rrule-freq option[value="WEEKLY"]').attr('selected', null);
