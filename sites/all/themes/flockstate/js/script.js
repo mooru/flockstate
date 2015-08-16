@@ -1,6 +1,5 @@
 (function($) {
-
-    Drupal.behaviors.myBehavior = {
+  Drupal.behaviors.myBehavior = {
         attach: function(context, settings) {
 
 
