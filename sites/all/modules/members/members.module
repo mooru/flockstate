@@ -33,6 +33,9 @@ return $form;
 
 
 function members_form_prospects_node_form_alter(&$form, &$form_state, $form_id) {
+  foreach($form['field_small_group']['und']['#options'] as &$option){
+     $option = decode_entities($option);
+  }
 unset($form['field_gender']['und']['#options']['_none']);
 drupal_set_title(t('Prospects'));
 
@@ -49,6 +52,9 @@ return $form;
 
 
 function members_form_visitors_node_form_alter(&$form, &$form_state, $form_id) {
+  foreach($form['field_small_group']['und']['#options'] as &$option){
+     $option = decode_entities($option);
+  }
   unset($form['field_gender']['und']['#options']['_none']);
   unset($form['field_visitor_decision']['und']['#options']['_none']);
 drupal_set_title(t('Visitors'));
