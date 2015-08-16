@@ -15,7 +15,7 @@
             jQuery('.block-views h2').eq(0).append(' <i class="fa fa-filter"></i>');
             jQuery('#block-views-categories-block-1 h2').add('#block-views-categories-block-2 h2').append(' <i class="fa fa-tag"></i>');
 
-            jQuery("a[href*='sample.csv']").addClass('btn btn-primary btn-lg').text('Download Sample Template').prepend('<i class="fa fa-file"></i> ');
+            jQuery("a[href*='sample.csv']").text('Download Sample Template').prepend('<i class="fa fa-file"></i> ');
 
             jQuery('#block-block-1 h2').append('<i class="fa fa-calendar"></i>');
 
@@ -24,7 +24,7 @@
             jQuery('.tabledrag-toggle-weight-wrapper').hide();
 
             //import template link
-            jQuery('.item-list ul li a[href*="template"]').addClass("btn-primary btn-lg btn").prepend('<i class="fa fa-cloud-download"></i> ');
+            jQuery('.item-list ul li a[href*="template"]').prepend('<i class="fa fa-cloud-download"></i> ');
 
             //ical button
             jQuery('.ical-icon img').removeAttr('src');
