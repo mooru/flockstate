@@ -10,6 +10,11 @@
                 }).find('div.description')
                 .hide();
 
+jQuery('input.form-text').add('textarea.form-textarea').blur(function() {
+            var value = $.trim( $(this).val() );
+            $(this).val( value );
+        });
+
             jQuery('.page-chart .page-header').append('<i class="fa fa-bar-chart-o"></i>');
             jQuery('.block-views h2').eq(0).append(' <i class="fa fa-filter"></i>');
             jQuery('#block-views-categories-block-1 h2').add('#block-views-categories-block-2 h2').append(' <i class="fa fa-tag"></i>');
