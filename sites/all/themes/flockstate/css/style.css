@@ -2566,6 +2566,9 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 
 .dcount{
     float: left;
+        background-color: #7B9C89;
+    color: #fff;
+    padding: 0 4px;
 }
 
 .searchme{
