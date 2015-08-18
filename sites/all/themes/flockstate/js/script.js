@@ -9,7 +9,7 @@
                     jQuery('div.description', this).slideUp(250);
                 }).find('div.description')
                 .hide();
-
+jQuery('.view-ministry-service-report table').add('.page-church-report table').footable();
 jQuery('input.form-text').add('textarea.form-textarea').blur(function() {
             var value = $.trim( $(this).val() );
             $(this).val( value );
