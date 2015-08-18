@@ -17,22 +17,25 @@
  * @ingroup views_templates
  */
 ?>
+<div class="subheader">
 <div class="dcount">
 <?php
-global $pager_page_array, $pager_total, $pager_limits, $pager;
+global $pager_page_array, $pager_total, $pager_limits;
 $from = ($view->query->pager->current_page * $view->query->pager->options['items_per_page']) + 1;
 $to = $from + count($view->result) - 1;
 $total = $view->total_rows;
 if($total > 0){
 if ($total <= $to) {
-print 'Showing '.$total.' guests';
+print 'Showing '.$total.'';
 }
 else
 {
-print 'Showing '.$from.' - '.$to.' out of '.$view->total_rows.' guests';
+print 'Showing '.$from.' - '.$to.' out of '.$view->total_rows.'';
 }
 }
 ?>
+</div>
+<div class="searchme">Search:<input type="text" id="searchbox"></div>
 </div>
 <table <?php if ($classes): print 'class="'. $classes . '" '; endif; ?><?php print $attributes; ?>>
   <?php if (!empty($title)) : ?>

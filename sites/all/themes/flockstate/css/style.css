@@ -2555,7 +2555,19 @@ strong.bday {
 }
 
 input[type="submit"], input[type="reset"], input[type="button"] {
-  
+
     padding: 7px 14px;
 
+}
+
+.subheader{
+    margin-top: 20px;
+}
+
+.dcount{
+    float: left;
+}
+
+.searchme{
+    float: right;
 }
