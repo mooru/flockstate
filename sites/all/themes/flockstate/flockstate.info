@@ -18,6 +18,7 @@ stylesheets[all][] = css/simptip.min.css
 
 scripts[] = js/script.js
 scripts[] = js/footable.js
+scripts[] = js/footable.filter.js
 scripts[] = js/amp.js
 
 regions[pre_header_first] = Pre Header First

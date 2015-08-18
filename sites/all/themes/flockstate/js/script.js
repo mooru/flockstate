@@ -233,6 +233,11 @@ jQuery('.addmail').attr('title', 'Add Email')
         return false;
     });
 
+        jQuery('#searchbox').keyup(function(){
+                var searchterm = jQuery('input#searchbox').val();
+                jQuery('table').trigger('footable_filter', {filter: searchterm});
+        });
+
 
 
 
