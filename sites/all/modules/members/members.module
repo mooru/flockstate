@@ -77,7 +77,7 @@ return $form;
 function members_form_report_node_form_alter(&$form, &$form_state, $form_id) {
 drupal_set_title(t('Service Report'));
 if (count($form['field_church_']['und']['#options']) > 1){
-   $form['field_church_']['und']['#required'] = TRUE;
+   $form['field_church_']['und']['#required'] = FALSE;
  }
 else{
   // $form['field_church_']['und']['#required'] = FALSE;
