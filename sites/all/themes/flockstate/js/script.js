@@ -238,14 +238,44 @@ jQuery('.addmail').attr('title', 'Add Email')
                 jQuery('table').trigger('footable_filter', {filter: searchterm});
         });
 
-   $('input#edit-field-surname-und-0-value').add('input#edit-field-name-und-0-value').keyup(function(event) {
-            var textBox = event.target;
-            var start = textBox.selectionStart;
-            var end = textBox.selectionEnd;
-            textBox.value = textBox.value.charAt(0).toUpperCase() + textBox.value.slice(1);
-            textBox.setSelectionRange(start, end);
-        });
+   // $('input#edit-field-surname-und-0-value').add('input#edit-field-name-und-0-value').keyup(function(event) {
+   //          var textBox = event.target;
+   //          var start = textBox.selectionStart;
+   //          var end = textBox.selectionEnd;
+   //          textBox.value = textBox.value.charAt(0).toUpperCase() + textBox.value.slice(1);
+   //          textBox.setSelectionRange(start, end);
+   //      });
+//Capitalize first word as user input
+//usage
+jQuery('input#edit-field-surname-und-0-value')
+.add('input#edit-field-name-und-0-value')
+.add('input#edit-field-role-und-0-value')
+.add('input#edit-field-group-name-und-0-value')
+.add('input#edit-field-class-und-0-value')
+.add('input#edit-field-member-occupation-und-0-value')
+.add('input#edit-field-address-und-0-value')
+.add('input#edit-field-church-und-0-value')
+.keyup(function() {
+   toUpper(this);
+});
 
+
+//function
+function toUpper(obj) {
+  var mystring = obj.value;
+  var sp = mystring.split(' ');
+  var wl=0;
+  var f ,r;
+  var word = new Array();
+  for (i = 0 ; i < sp.length ; i ++ ) {
+    f = sp[i].substring(0,1).toUpperCase();
+    r = sp[i].substring(1).toLowerCase();
+    word[i] = f+r;
+  }
+  newstring = word.join(' ');
+  obj.value = newstring;
+  return true;
+}
 
 
 
