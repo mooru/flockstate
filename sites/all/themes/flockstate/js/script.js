@@ -245,6 +245,10 @@ jQuery('.addmail').attr('title', 'Add Email')
    //          textBox.value = textBox.value.charAt(0).toUpperCase() + textBox.value.slice(1);
    //          textBox.setSelectionRange(start, end);
    //      });
+   //
+   jQuery('input#edit-field-memail-und-0-email')
+   .add('input#edit-field-memail-und-1-email')
+   .Setcase({caseValue : 'lower'});
 //Capitalize first word as user input
 //usage
 jQuery('input#edit-field-surname-und-0-value')
