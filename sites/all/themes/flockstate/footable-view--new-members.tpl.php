@@ -35,7 +35,7 @@ print 'Showing '.$from.' - '.$to.' out of '.$view->total_rows.'';
 }
 ?>
 </div>
-<div class="searchme">Search:<input type="text" id="searchbox"></div>
+
 </div>
 <table <?php if ($classes): print 'class="'. $classes . '" '; endif; ?><?php print $attributes; ?>>
   <?php if (!empty($title)) : ?>

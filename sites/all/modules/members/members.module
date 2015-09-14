@@ -10,8 +10,12 @@ function members_menu(){
     'weight' => -13
 
     );
+
+
+
 return $items;
 }
+
 
 function members_form_members_node_form_alter(&$form, &$form_state, $form_id) {
   foreach($form['field_small_group']['und']['#options'] as &$option){
@@ -96,13 +100,19 @@ return $form;
 
 function members_form_attendance_node_form_alter(&$form, &$form_state, $form_id) {
 drupal_set_title(t('Attendance'));
-
+$form['field_name_of_member']['und']['add_more']['#value'] = decode_entities('&#xf007;').' Add Members';
+$form['field_attendance_']['und']['#options'][53] = 'Absent '. decode_entities('&#xf00d;');
+$form['field_attendance_']['und']['#options'][52] = 'Present '. decode_entities('&#xf00c;');
 return $form;
 }
 
+
 function members_form_visitors_attendance_node_form_alter(&$form, &$form_state, $form_id) {
 drupal_set_title(t('Visitor Attendance'));
-
+$form['field_visitor']['und']['add_more']['#value'] = decode_entities('&#xf007;').' Add Visitors';
+$form['field_attendance_visitor']['und']['#options'][259] = 'Absent '. decode_entities('&#xf00d;');
+$form['field_attendance_visitor']['und']['#options'][260] = 'Present '. decode_entities('&#xf00c;');
+unset($form['field_attendance_visitor']['und']['#options']['_none']);
 return $form;
 }
 
@@ -169,12 +179,6 @@ function members_module_implements_alter(&$implementations, $hook) {
 
   }
 
-
-
-
-
-
-
 // function members_form_views_form_group_chnage_page_alter(&$form, &$form_state, $form_id){
 //     // Adjust VBO text labels and set button weightings
 //   // Set button order with #weight
@@ -205,6 +209,7 @@ return $form;
 }
 
 function members_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  dpm($form);
 
   $form['account']['read']['#markup'] = '<div class="reado"><p class="read">Enter details of Account Administrator in the form below</p></div>';
   $form['account']['read']['#weight'] = -12;
@@ -345,9 +350,9 @@ function members_feeds_presave(FeedsSource $source, $entity, $item) {
 
 // Visitors Attendance form alter
 function members_form_alter(&$form, &$form_state, $form_id) {
-if($form_id == 'visitors_attendance_node_form'){
-  $form['field_visitor'][LANGUAGE_NONE]['add_more']['#value'] = 'Add Visitors';
-}
+// if($form_id == 'visitors_attendance_node_form'){
+//   $form['field_visitor'][LANGUAGE_NONE]['add_more']['#value'] = 'Add Visitors';
+// }
 
 if(($form_id == 'views_form_members_church') || ($form_id == 'views_form_members_ministry') || ($form_id == 'views_form_members_groups') || ($form_id == 'views_form_new_members_church') || ($form_id == 'views_form_new_members_all_guests') || ($form_id == 'views_form_members_group') || ($form_id == 'views_form_prospects_ministry') || ($form_id == 'views_form_prospects_church') || ($form_id == 'views_form_prospects_group')) {
 
@@ -456,11 +461,25 @@ return $form;
   $form['date_filter_1']['min']['#date_format'] = 'm/d/Y';
   $form['date_filter_1']['max']['#date_format'] = 'm/d/Y';
   $form['date_filter_2']['value']['#date_format'] = 'm/d/Y';
+  $form['tid']['#options'][53] = 'Absent '. decode_entities('&#xf00d;');
+  $form['tid']['#options'][52] = 'Present '. decode_entities('&#xf00c;');
+   $form['tid']['#options'][259] = 'Absent '. decode_entities('&#xf00d;');
+  $form['tid']['#options'][260] = 'Present '. decode_entities('&#xf00c;');
+
+
+
 }
 
 function members_form_user_profile_form_alter(&$form, &$form_state, $form_id){
-if(count($form['field_church_']['und']['#options']) < 2){
-unset($form['field_church_']);
+  krumo($form);
+
+if(count($form['field_church_']['und']['#options']) > 2) {
+  unset($form['field_church_']);
+  unset($form['account']['roles']['#options'][4]);
+
+}
+if(!isset($form['field_church_'])){
+   unset($form['account']['roles_change']['#options'][4]);
 }
 if(($form['account']['roles']['#default_value'][0] == 2) && ($form['account']['roles']['#default_value'][1] == 10)){
    unset($form['field_church_']);
@@ -560,4 +579,18 @@ function members_views_plugins_alter(&$plugins) {
   $plugins['style']['views_data_export_xls']['export feed icon'] = 'sites/default/files/xlsx.png';
    $plugins['style']['views_data_export_txt']['export feed icon'] = 'sites/default/files/txts.png';
 }
+
+// function members_views_query_alter(&$view, &$query){
+//   if($view->name == 'members'){
+//     $query->where[0]['type'] = 'OR';
+//   }
+// }
+
+// function members_views_api(){
+//   return array(
+//     'api' => 3,
+// );
+// }
+
+
 

@@ -195,6 +195,8 @@ tbody tr td {
 #header {
     /*background-color: #fcfcfc;*/
     /*border-bottom: 1px solid #eaeaea;*/
+    display: none;
+
 
     position: relative;
     z-index: 5;
@@ -203,7 +205,8 @@ tbody tr td {
     min-height: 130px;
 }
 #main-navigation {
-    background-color: #fcfcfc;
+    /*background-color: #fcfcfc;*/
+    background-color: #333;
     position: relative;
     z-index: 11;
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075), 0 10px 0 rgba(0, 0, 0, 0.01);
@@ -244,7 +247,8 @@ tbody tr td {
     padding: 60px 0 30px;
 }
 #subfooter {
-    background-color: #fcfcfc;
+    /*background-color: #fcfcfc;*/
+    background-color: #31984d;
     border-top: 1px solid #eaeaea;
     padding: 40px 0 20px;
     text-align: center;
@@ -1592,7 +1596,8 @@ textarea {
 }
 #sidebar-first {
     padding: 20px;
-    background-color: #fcfcfc;
+    /*background-color: #fcfcfc;*/
+    background-color: #fff;
     border: 1px solid #eaeaea;
 }
 .disp {
@@ -1727,7 +1732,8 @@ div.collapsible.required-fields.group-package.field-group-div.speed-fast.effect-
 .not-front.logged-in #page,
 .not-logged-in.page-user #page,
 .not-front.not-logged-in.page-node-4445 #page {
-    background-image: url('/sites/default/files/bg2.png');
+    /*background-image: url('/sites/default/files/bg2.png');*/
+    background-color: #e1e1e3;
 }
 .page-node-4445 #header {
     display: none;
@@ -1845,19 +1851,19 @@ div#edit-bundle-group-members-field-attendance-service-und > div:nth-child(1),
 .maintenance-page.in-maintenance #footer,
 .domain-flockstate-com .gotosite,
 .node-members-form div .picme,
-.node-type-report ul.tabs.primary,
-.node-type-attendance ul.tabs.primary,
-.node-type-family-members ul.tabs.primary,
-.node-type-group-members ul.tabs.primary,
-.node-type-role ul.tabs.primary,
-.node-type-discipleship ul.tabs.primary,
-.node-type-minstry ul.tabs.primary,
-.node-type-family ul.tabs.primary,
-.node-type-groups-and-departments ul.tabs.primary,
-.node-type-group-type ul.tabs.primary,
-.node-type-service-type ul.tabs.primary,
-.node-type-church ul.tabs.primary,
-.node-type-training ul.tabs.primary {
+/* //.node-type-report ul.tabs.primary, */
+/* //.node-type-attendance ul.tabs.primary, */
+/* //.node-type-family-members ul.tabs.primary, */
+/* .node-type-group-members ul.tabs.primary, */
+/* .node-type-role ul.tabs.primary, */
+/* .node-type-discipleship ul.tabs.primary, */
+/* .node-type-minstry ul.tabs.primary, */
+/* .node-type-family ul.tabs.primary, */
+/* .node-type-groups-and-departments ul.tabs.primary, */
+/* .node-type-group-type ul.tabs.primary, */
+/* .node-type-service-type ul.tabs.primary, */
+/* .node-type-church ul.tabs.primary, */
+/* .node-type-training ul.tabs.primary { */
     display: none;
 }
 .maintenance-page {
@@ -2682,3 +2688,49 @@ input[type="button"] {
 .searchme {
     float: right;
 }
+
+a.flag.flag-action.flag-link-toggle.flag-processed {
+    background-color: steelblue;
+    color: #fff;
+    padding: 9px;
+    text-decoration: none;
+}
+
+a.flag.unflag-action.flag-link-toggle.flagged.flag-processed {
+    background-color: #9FC7E8;
+    color: #ECEAEA;
+    padding: 9px;
+    text-decoration: none;
+}
+
+.form-item.form-type-checkbox.form-item-bundle-members--append::field-small-group{
+    display:none !important;
+}
+
+
+#edit-field-attendance-und label.option,
+#edit-field-attendance-visitor-und label.option,
+input#edit-field-name-of-member-und-add-more,
+input#edit-field-visitor-und-add-more,
+.form-item.form-type-radio.form-item-tid{
+    font-family:fontawesome;
+}
+
+
+#edit-field-attendance-und .form-item.form-type-radio.form-item-field-attendance--und:nth-child(1),
+#edit-field-attendance-visitor-und .form-item.form-type-radio.form-item-field-attendance-visitor-und:nth-child(1),
+.form-item.form-type-radio.form-item-tid:nth-child(2) {
+    color: #F00;
+}
+#edit-field-attendance-und .form-item.form-type-radio.form-item-field-attendance--und:nth-child(2),
+#edit-field-attendance-visitor-und .form-item.form-type-radio.form-item-field-attendance-visitor-und:nth-child(2),
+.form-item.form-type-radio.form-item-tid:nth-child(3) {
+    color: #008000;
+}
+
+tr.Present td.footable-visible.footable-last-column,
+tr.Absent td.footable-visible.footable-last-column {
+    width: 20px;
+    text-align: center;
+}
+

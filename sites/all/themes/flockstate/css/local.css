@@ -15,3 +15,11 @@ background-color:#F15D5D;
 .page-categories .fa-warning{
 color:#f00;
 }
+
+i.fa.fa-times {
+    color: red;
+}
+
+i.fa.fa-check {
+    color: green;
+}

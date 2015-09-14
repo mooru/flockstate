@@ -42,9 +42,6 @@ function domain_bonus_login_restrict_form_alter(&$form, &$form_state, $form_id) 
 
     // Provide option to enable / disable restriction on domain settings form.
     case 'domain_configure_form':
-      object_log('form_id ' . time(), $form_id);
-      object_log('form_state ' . time(), $form_state);
-      object_log('form ' . time(), $form);
 
       // Add form element fieldset.
       $form['domain_account_login_fieldset'] = array(
