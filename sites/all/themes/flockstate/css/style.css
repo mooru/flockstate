@@ -1574,6 +1574,9 @@ div.form-item.form-type-select.form-item-profile-package-field-package-und,
 /*    background-color: #fcfcfc;
     border: 1px solid #eaeaea;*/
     padding: 20px;
+        background-color: #fff;
+    border: 1px solid #ccc;
+}
 }
 .logged-in.page-r4032login section.col-md-12 {
     width: 70%;
