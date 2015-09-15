@@ -427,9 +427,11 @@ ul.menu li.expanded ul {
     text-transform: capitalize;
     font-weight: 400;
     font-size: 13px;
-    border: 1px solid #eaeaea;
+    /*border: 1px solid #eaeaea;*/
     border-top: none;
     line-height: 150%;
+        background-color: #D2114E;
+            border: 1px solid #E2DDDD;
 }
 /*superfish support*/
 
