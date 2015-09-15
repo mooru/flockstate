@@ -1568,8 +1568,8 @@ div.form-item.form-type-select.form-item-profile-package-field-package-und,
 .page-family-by-ministry section.col-md-8,
 .page-family-by-church section.col-md-8,
 .page-family-by-group section.col-md-8 {
-    background-color: #fcfcfc;
-    border: 1px solid #eaeaea;
+/*    background-color: #fcfcfc;
+    border: 1px solid #eaeaea;*/
     padding: 20px;
 }
 .logged-in.page-r4032login section.col-md-12 {
