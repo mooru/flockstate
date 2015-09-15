@@ -1966,6 +1966,11 @@ li.menu-15.last a::after {
     padding: 3px 30px 15px 30px;
     color:#fff;
 }
+
+#subfooter ul.menu li a:hover {
+    padding: 3px 30px 15px 30px;
+    color:#333;
+}
 a.attendance,
 a.addmembers,
 a.addvisitors,
