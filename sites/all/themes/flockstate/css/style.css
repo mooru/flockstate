@@ -1510,9 +1510,12 @@ ul.primary {
 }
 .page-node-add div#content-wrapper,
 .page-import section.col-md-12 {
-    background-color: #fcfcfc;
-    border: 1px solid #eaeaea;
+   /* background-color: #fcfcfc;
+    border: 1px solid #eaeaea;*/
+background-color: #fff;
+border: 1px solid #CFC9C9;
 }
+
 .page-admin-people-create section.col-md-12,
 .page-tutorials section.col-md-12,
 .page-members-by-ministry section.col-md-8,
@@ -1594,11 +1597,12 @@ textarea {
 .block-afb {
     padding: 0;
 }
-#sidebar-first {
+#sidebar-first, #sidebar-first .block {
     padding: 20px;
     /*background-color: #fcfcfc;*/
     background-color: #fff;
-    border: 1px solid #eaeaea;
+ /*   border: 1px solid #eaeaea;*/
+ border: 1px solid rgb(207, 201, 201);
 }
 .disp {
     margin: 30px 0 0 0;
@@ -1960,6 +1964,7 @@ li.menu-15.last a::after {
 }
 #subfooter ul.menu li a {
     padding: 3px 30px 15px 30px;
+    color:#fff;
 }
 a.attendance,
 a.addmembers,

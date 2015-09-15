@@ -18,6 +18,7 @@ return $items;
 
 
 function members_form_members_node_form_alter(&$form, &$form_state, $form_id) {
+
   foreach($form['field_small_group']['und']['#options'] as &$option){
      $option = decode_entities($option);
 
