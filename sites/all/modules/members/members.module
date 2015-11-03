@@ -18,6 +18,9 @@ return $items;
 
 
 function members_form_members_node_form_alter(&$form, &$form_state, $form_id) {
+  dpm($form);
+  $form['field_surname']['und'][0]['value']['#placeholder'] = decode_entities('&#xf007;');
+ $form['field_birthday']['und'][0]['value']['#placeholder'] = decode_entities('&#xf073;');
 
   foreach($form['field_small_group']['und']['#options'] as &$option){
      $option = decode_entities($option);
@@ -472,16 +475,16 @@ return $form;
 }
 
 function members_form_user_profile_form_alter(&$form, &$form_state, $form_id){
-  krumo($form);
+
 
 if(count($form['field_church_']['und']['#options']) > 2) {
   unset($form['field_church_']);
-  unset($form['account']['roles']['#options'][4]);
+  // unset($form['account']['roles']['#options'][4]);
 
 }
-if(!isset($form['field_church_'])){
-   unset($form['account']['roles_change']['#options'][4]);
-}
+// if(!isset($form['field_church_'])){
+//    // unset($form['account']['roles_change']['#options'][4]);
+// }
 if(($form['account']['roles']['#default_value'][0] == 2) && ($form['account']['roles']['#default_value'][1] == 10)){
    unset($form['field_church_']);
 }
@@ -493,81 +496,81 @@ return $form;
 /**
 * Implements hook_cron_queue_info().
 */
-function members_cron_queue_info() {
-$queues = array();
-$queues['members_queue_notify'] = array(
-'worker callback' => 'members_queue_notify_worker',
-'time' => 90,
-);
-return $queues;
-}
+// function members_cron_queue_info() {
+// $queues = array();
+// $queues['members_queue_notify'] = array(
+// 'worker callback' => 'members_queue_notify_worker',
+// 'time' => 90,
+// );
+// return $queues;
+// }
 
-/**
-* Queue worker for sending notification mails.
-*/
-function members_queue_notify_worker($params) {
-drupal_mail('members', 'notify', $params['to'], language_default(), $params, $params['from']);
-}
+// /**
+// * Queue worker for sending notification mails.
+// */
+// function members_queue_notify_worker($params) {
+// drupal_mail('members', 'notify', $params['to'], language_default(), $params, $params['from']);
+// }
 
-/**
-* Implements hook_mail().
-*/
-function members_mail($key, &$message, $params) {
-$language = $message['language'];
-$message['subject'] = $params['subject'];
-$message['body'][] = $params['message'];
-}
+// /**
+// * Implements hook_mail().
+// */
+// function members_mail($key, &$message, $params) {
+// $language = $message['language'];
+// $message['subject'] = $params['subject'];
+// $message['body'][] = $params['message'];
+// }
 
-/**
-* Implements hook_rules_action_info().
-*/
-function members_rules_action_info() {
-return array(
-'members_rules_action_mail' => array(
-'label' => t('Send mail'),
-'group' => 'members',
-'parameter' => array(
-'to' => array(
-'type' => 'text',
-'label' => t('To'),
-'description' => t('The e-mail address or addresses where the message will be sent to. The formatting of this string must comply with RFC 2822.'),
-),
-'subject' => array(
-'type' => 'text',
-'label' => t('Subject'),
-'description' => t("The mail's subject."),
-),
-'message' => array(
-'type' => 'text',
-'label' => t('Message'),
-'description' => t("The mail's message body."),
-),
-'from' => array(
-'type' => 'text',
-'label' => t('From'),
-'description' => t("The mail's from address. Leave it empty to use the site-wide configured address."),
-'optional' => TRUE,
-),
-),
-),
-);
-}
+// /**
+// * Implements hook_rules_action_info().
+// */
+// function members_rules_action_info() {
+// return array(
+// 'members_rules_action_mail' => array(
+// 'label' => t('Send mail'),
+// 'group' => 'members',
+// 'parameter' => array(
+// 'to' => array(
+// 'type' => 'text',
+// 'label' => t('To'),
+// 'description' => t('The e-mail address or addresses where the message will be sent to. The formatting of this string must comply with RFC 2822.'),
+// ),
+// 'subject' => array(
+// 'type' => 'text',
+// 'label' => t('Subject'),
+// 'description' => t("The mail's subject."),
+// ),
+// 'message' => array(
+// 'type' => 'text',
+// 'label' => t('Message'),
+// 'description' => t("The mail's message body."),
+// ),
+// 'from' => array(
+// 'type' => 'text',
+// 'label' => t('From'),
+// 'description' => t("The mail's from address. Leave it empty to use the site-wide configured address."),
+// 'optional' => TRUE,
+// ),
+// ),
+// ),
+// );
+// }
 
-/**
-* Action: Add notification mails to the queue.
-*/
-function members_rules_action_mail($to, $subject, $message, $from = NULL, $settings, RulesState $state, RulesPlugin $element) {
-// Gather params.
-$params = array(
-'to' => str_replace(array("\r", "\n"), '', $to),
-'from' => !empty($from) ? str_replace(array("\r", "\n"), '', $from) : NULL,
-'subject' => $subject,
-'message' => $message,
-);
-// Add to the queue.
-$queue = DrupalQueue::get('members_queue_notify');
-$queue->createItem($params);
-}
+// /**
+// * Action: Add notification mails to the queue.
+// */
+// function members_rules_action_mail($to, $subject, $message, $from = NULL, $settings, RulesState $state, RulesPlugin $element) {
+// // Gather params.
+// $params = array(
+// 'to' => str_replace(array("\r", "\n"), '', $to),
+// 'from' => !empty($from) ? str_replace(array("\r", "\n"), '', $from) : NULL,
+// 'subject' => $subject,
+// 'message' => $message,
+// );
+// // Add to the queue.
+// $queue = DrupalQueue::get('members_queue_notify');
+// $queue->createItem($params);
+// }
 
 function members_form_comment_node_members_form_alter(&$form, &$form_state, $form_id){
 $form['feedback']['#markup'] = '<div class="feeback"><ul><li>Reasons for absence from the service</li><li>Follow up activities and feddback</li><li>Prayer requests</li><li>Needs and challenges</li><li>Other comments that will aid the welfare and care of this member</li></ul></div>';
@@ -594,4 +597,83 @@ function members_views_plugins_alter(&$plugins) {
 // }
 
 
+//Cloning Rules
+function members_rules_action_info() {
+  $defaults = array(
+    'parameter' => array(
+       'source_node' => array(
+         'type' => 'node',
+         'label' => t('Source Node'),
+       ),
+    ),
+    'provides' => array(
+       'type' => 'node',
+       'label' => t("Cloned Node's Original node"),
+    ),
+    'group' => t('Node'),
+  );
+
+  $actions['clone_orig_node'] = $defaults + array(
+    'label' => t('Get original node'),
+    'base' => 'members_action_get_orig_node',
+  );
+
+  return $actions;
+}
+
+/**
+ * Implements hook_rules_condition_info
+ */
+function members_rules_condition_info() {
+  $defaults = array(
+    'parameter' => array(
+      'cloned_node' => array(
+        'type' => 'node',
+        'label' => t('Node to check'),
+      ),
+    ),
+    'group' => t('Node'),
+  );
+
+  $conditions['user_block'] = $defaults + array(
+    'label' => t('Node is cloned'),
+    'base' => 'members_condition_node_is_cloned',
+  );
+
+  return $conditions;
+}
+
+/**
+ * Rules condition to determine whether node is cloned or not.
+ *
+ * @param Node $node
+ * Node to check.
+ * @return boolean
+ * True if node is cloned, false otherwise.
+ */
+function members_condition_node_is_cloned($node) {
+  return isset($node->clone_from_original_nid) ? TRUE : FALSE;
+}
+
+/**
+ * Rules action to load original node by which $node is cloned.
+ *
+ * @param node $node
+ * The cloned node.
+ * @return Node
+ * The original node by which $node is cloned.
+ */
+function members_action_get_orig_node($node) {
+  if(members_condition_node_is_cloned($node)) {
+    return node_load($node->clone_from_original_nid);
+  }
+  return FALSE;
+}
+
+
+/**
+ * Implements hook_menu().
+ *
+ * This module allows to create a menu item that links to a file that is in the downloads folder
+ */
 

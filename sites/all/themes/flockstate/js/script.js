@@ -274,6 +274,59 @@ function toUpper(obj) {
   return true;
 }
 
+jQuery('#edit-field-tel-no-und-0-value').on('blur', function() {
+    var $this = $(this),
+        currentValue = $this.val();
+
+    if (this.value.indexOf('2340') === 0) {
+    	$this.val(currentValue.replace('2340', ''));
+    }
+});
+
+jQuery('#edit-field-tel-no-und-0-value').on('blur', function() {
+    var $this = $(this),
+        currentValue = $this.val();
+
+    if (this.value.indexOf('234') === 0) {
+    	$this.val(currentValue.replace('234', ''));
+    }
+});
+
+jQuery('#edit-field-tel-no-und-0-value').on('blur', function() {
+    var $this = $(this),
+        currentValue = $this.val();
+
+    if (this.value.indexOf('0') === 0) {
+    	$this.val(currentValue.replace('0', ''));
+    }
+});
+
+jQuery('#edit-field-tel-no-und-1-value').on('blur', function() {
+    var $this = $(this),
+        currentValue = $this.val();
+
+    if (this.value.indexOf('2340') === 0) {
+    	$this.val(currentValue.replace('2340', ''));
+    }
+});
+
+jQuery('#edit-field-tel-no-und-1-value').on('blur', function() {
+    var $this = $(this),
+        currentValue = $this.val();
+
+    if (this.value.indexOf('234') === 0) {
+    	$this.val(currentValue.replace('234', ''));
+    }
+});
+
+jQuery('#edit-field-tel-no-und-1-value').on('blur', function() {
+    var $this = $(this),
+        currentValue = $this.val();
+
+    if (this.value.indexOf('0') === 0) {
+    	$this.val(currentValue.replace('0', ''));
+    }
+});
 
 
 

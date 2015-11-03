@@ -432,6 +432,7 @@ ul.menu li.expanded ul {
     line-height: 150%;
         background-color: #D2114E;
             border: 1px solid #E2DDDD;
+            color: #fff;
 }
 /*superfish support*/
 
@@ -1507,8 +1508,9 @@ ul.primary {
 }
 .block-afb .node-form {
     padding: 0 20px;
-    border: 1px solid rgba(209, 202, 202, 0.37);
-    background-color: #f0f0f0;
+    /*border: 1px solid rgba(209, 202, 202, 0.37);*/
+    background-color: #ececec;
+    border:1px solid #CFC9C9;
 }
 .page-node-add div#content-wrapper,
 .page-import section.col-md-12 {
@@ -1573,11 +1575,10 @@ div.form-item.form-type-select.form-item-profile-package-field-package-und,
 .page-family-by-ministry section.col-md-8,
 .page-family-by-church section.col-md-8,
 .page-family-by-group section.col-md-8 {
-/*    background-color: #fcfcfc;
-    border: 1px solid #eaeaea;*/
+
     padding: 20px;
-        background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #fff;
+    border: 1px solid rgb(204, 204, 204);
 }
 }
 .logged-in.page-r4032login section.col-md-12 {
@@ -1602,12 +1603,13 @@ textarea {
 .block-afb {
     padding: 0;
 }
-#sidebar-first, #sidebar-first .block {
+#sidebar-first{
     padding: 20px;
     /*background-color: #fcfcfc;*/
     background-color: #fff;
  /*   border: 1px solid #eaeaea;*/
- border: 1px solid rgb(207, 201, 201);
+ /*border: 1px solid rgb(207, 201, 201);*/
+ border: 1px solid #C1BEBE;
 }
 .disp {
     margin: 30px 0 0 0;
@@ -1741,8 +1743,8 @@ div.collapsible.required-fields.group-package.field-group-div.speed-fast.effect-
 .not-front.logged-in #page,
 .not-logged-in.page-user #page,
 .not-front.not-logged-in.page-node-4445 #page {
-    /*background-image: url('/sites/default/files/bg2.png');*/
-    background-color: #e1e1e3;
+    /*background-image: url('/sites/default/files/bgf.png');*/
+    background-color: #EEEEEF;
 }
 .page-node-4445 #header {
     display: none;
@@ -2360,17 +2362,20 @@ a.permalink {
 #block-afb-9 {
     background-color: #fff;
     padding: 20px;
+    border:1px solid rgb(204, 204, 204);
 }
 #block-afb-8,
 #block-afb-7 {
     background-color: #fff;
     padding: 20px;
     margin-top: 20px;
+    border:1px solid rgb(204, 204, 204);
 }
 #block-afb-1 {
     background-color: #fff;
     padding: 20px;
     margin-top: 20px;
+    border:1px solid rgb(204, 204, 204);
 }
 .page-node-add-members #sidebar-first {
     background-color: transparent;
@@ -2419,14 +2424,16 @@ a.permalink {
 #block-views-exp-members-ministry,
 #block-views-exp-members-church,
 #block-views-exp-members-groups {
-    background-color: #fcfcfc;
+    background-color: #fff;
     padding: 20px;
+    border:1px solid rgb(204, 204, 204);
 }
 #block-views-categories-block-1,
 #block-views-categories-block-2 {
-    background-color: #fcfcfc;
+    background-color: #fff;
     margin-top: 20px;
     padding: 20px;
+    border:1px solid rgb(204, 204, 204);
 }
 .page-members-by-ministry #sidebar-first,
 .page-members-by-church #sidebar-first,
@@ -2495,6 +2502,7 @@ a.permalink {
     .node-type-church #content-wrapper, .node-type-groups-and-departments #content-wrapper, .node-type-ministry #content-wrapper, .node-type-training #content-wrapper {
         width: 50%;
         margin: auto;
+        border: 1px solid rgb(204, 204, 204);
     }
 }
 .node-type-church ul.primary,
@@ -2695,9 +2703,6 @@ input[type="button"] {
     margin-top: 20px;
 }
 .dcount {
-    float: left;
-    background-color: #7B9C89;
-    color: #fff;
     padding: 0 4px;
 }
 .searchme {
@@ -2748,4 +2753,3 @@ tr.Absent td.footable-visible.footable-last-column {
     width: 20px;
     text-align: center;
 }
-

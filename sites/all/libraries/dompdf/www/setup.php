@@ -3,14 +3,9 @@
 <a name="setup"> </a>
 <h2>Setup</h2>
 
-<ul>
-  <li style="list-style-image: url('images/star_02.gif');"><a href="#system">System Configuration</a></li>
-  <li style="list-style-image: url('images/star_02.gif');"><a href="#dompdf-config">DOMPDF Configuration</a></li>
-</ul>
+<h3>System Configuration</h3>
 
-<h3 id="system">System Configuration</h3>
-
-<?php
+<?php 
 require_once("../dompdf_config.inc.php");
 
 $server_configs = array(
@@ -27,8 +22,7 @@ $server_configs = array(
   "PCRE" => array(
     "required" => true,
     "value"    => phpversion("pcre"),
-    "result"   => function_exists("preg_match") && @preg_match("/./u", "a"),
-    "failure"  => "PCRE is required with Unicode support (the \"u\" modifier)",
+    "result"   => function_exists("preg_match"),
   ),
   "Zlib" => array(
     "required" => true,
@@ -48,33 +42,13 @@ $server_configs = array(
     "result"   => function_exists("imagecreate"),
     "fallback" => "Required if you have images in your documents",
   ),
-  "opcache" => array(
-    "required" => "For better performances",
-    "value"    => null,
-    "result"   => false,
-    "fallback" => "Recommended for better performances",
-  ),
-  "GMagick or IMagick" => array(
-    "required" => "Better with transparent PNG images",
-    "value"    => null,
-    "result"   => extension_loaded("gmagick") || extension_loaded("imagick"),
+  "APC" => array(
+    "required" => true,
+    "value"    => phpversion("apc"),
+    "result"   => function_exists("apc_fetch"),
     "fallback" => "Recommended for better performances",
   ),
 );
-
-if (($xc = extension_loaded("xcache")) || ($apc = extension_loaded("apc")) || ($zop = extension_loaded("Zend OPcache")) || ($op = extension_loaded("opcache"))) {
-  $server_configs["opcache"]["result"] = true;
-  $server_configs["opcache"]["value"] = (
-    $xc ? "XCache ".phpversion("xcache") : (
-      $apc ? "APC ".phpversion("apc") : (
-        $zop ? "Zend OPCache ".phpversion("Zend OPcache") : "PHP OPCache ".phpversion("opcache")
-      )
-    )
-  );
-}
-if (($gm = extension_loaded("gmagick")) || ($im = extension_loaded("imagick"))) {
-  $server_configs["GMagick or IMagick"]["value"] = ($im ? "IMagick ".phpversion("imagick") : "GMagick ".phpversion("gmagick"));
-}
 
 ?>
 
@@ -84,7 +58,7 @@ if (($gm = extension_loaded("gmagick")) || ($im = extension_loaded("imagick"))) 
     <th>Required</th>
     <th>Present</th>
   </tr>
-
+  
   <?php foreach($server_configs as $label => $server_config) { ?>
     <tr>
       <td class="title"><?php echo $label; ?></td>
@@ -93,24 +67,19 @@ if (($gm = extension_loaded("gmagick")) || ($im = extension_loaded("imagick"))) 
         <?php
         echo $server_config["value"];
         if ($server_config["result"] && !$server_config["value"]) echo "Yes";
-        if (!$server_config["result"]) {
-          if (isset($server_config["fallback"])) {
-            echo "<div>No. ".$server_config["fallback"]."</div>";
-          }
-          if (isset($server_config["failure"])) {
-            echo "<div>".$server_config["failure"]."</div>";
-          }
+        if (!$server_config["result"] && isset($server_config["fallback"])) {
+          echo "<div>No. ".$server_config["fallback"]."</div>";
         }
         ?>
       </td>
     </tr>
   <?php } ?>
-
+  
 </table>
 
-<h3 id="dompdf-config">DOMPDF Configuration</h3>
+<h3>DOMPDF Configuration</h3>
 
-<?php
+<?php 
 $dompdf_constants = array();
 $defined_constants = get_defined_constants(true);
 
@@ -128,11 +97,11 @@ $constants = array(
     "success" => "read",
   ),
   "DOMPDF_FONT_DIR" => array(
-    "desc" => "Directory containing fonts loaded into DOMPDF",
-    "success" => "write",
+    "desc" => "Additional fonts directory",
+    "success" => "read",
   ),
   "DOMPDF_FONT_CACHE" => array(
-    "desc" => "Font metrics cache (used mainly by CPDF)",
+    "desc" => "Font metrics cache",
     "success" => "write",
   ),
   "DOMPDF_TEMP_DIR" => array(
@@ -144,13 +113,14 @@ $constants = array(
     "success" => "read",
   ),
   "DOMPDF_UNICODE_ENABLED" => array(
-    "desc" => "Unicode support (with supporting fonts)",
+    "desc" => "Unicode support (thanks to additionnal fonts)",
   ),
-  "DOMPDF_ENABLE_FONTSUBSETTING" => array(
-    "desc" => "Enable font subsetting, will make smaller documents when using Unicode fonts",
+  "TTF2AFM" => array(
+    "desc" => "Path to the ttf2afm executable",
+    "success" => "read",
   ),
   "DOMPDF_PDF_BACKEND" => array(
-    "desc" => "Backend library that renders the output (PDF, image)",
+    "desc" => "Backend library that makes the outputted file (PDF, image)",
     "success" => "backend",
   ),
   "DOMPDF_DEFAULT_MEDIA_TYPE" => array(
@@ -174,12 +144,6 @@ $constants = array(
   "DOMPDF_ENABLE_REMOTE" => array(
     "desc" => "Allow remote stylesheets and images",
     "success" => "remote",
-  ),
-  "DOMPDF_ENABLE_CSS_FLOAT" => array(
-    "desc" => "Enable CSS float support (experimental)",
-  ),
-  "DOMPDF_ENABLE_HTML5PARSER" => array(
-    "desc" => "Enable the HTML5 parser (experimental)",
   ),
   "DEBUGPNG" => array(
     "desc" => "Debug PNG images",
@@ -212,20 +176,8 @@ $constants = array(
   "DOMPDF_FONT_HEIGHT_RATIO" => array(
     "desc" => "The line height ratio to apply to get a render like web browsers",
   ),
-  "DOMPDF_ENABLE_AUTOLOAD" => array(
-    "desc" => "Enable the DOMPDF autoloader",
-  ),
-  "DOMPDF_AUTOLOAD_PREPEND" => array(
-    "desc" => "Prepend the dompdf autoload function to the SPL autoload functions already registered instead of appending it",
-  ),
-  "DOMPDF_ADMIN_USERNAME" => array(
-    "desc" => "The username required to access restricted sections",
-    "secret" => true,
-  ),
-  "DOMPDF_ADMIN_PASSWORD" => array(
-    "desc" => "The password required to access restricted sections",
-    "secret" => true,
-    "success" => "auth",
+  "DOMPDF_ENABLE_CSS_FLOAT" => array(
+    "desc" => "Enable CSS float support (experimental)",
   ),
 );
 ?>
@@ -237,40 +189,31 @@ $constants = array(
     <th>Description</th>
     <th>Status</th>
   </tr>
-
+  
   <?php foreach($defined_constants["user"] as $const => $value) { ?>
     <tr>
       <td class="title"><?php echo $const; ?></td>
-      <td>
-      <?php
-        if (isset($constants[$const]["secret"])) {
-          echo "******";
-        }
-        else {
-          var_export($value);
-        }
-      ?>
-      </td>
+      <td><?php var_export($value); ?></td>
       <td><?php if (isset($constants[$const]["desc"])) echo $constants[$const]["desc"]; ?></td>
-      <td <?php
+      <td <?php 
         $message = "";
         if (isset($constants[$const]["success"])) {
           switch($constants[$const]["success"]) {
-            case "read":
+            case "read":  
               $success = is_readable($value);
               $message = ($success ? "Readable" : "Not readable");
             break;
-            case "write":
+            case "write": 
               $success = is_writable($value);
               $message = ($success ? "Writable" : "Not writable");
             break;
-            case "remote":
+            case "remote": 
               $success = ini_get("allow_url_fopen");
               $message = ($success ? "allow_url_fopen enabled" : "allow_url_fopen disabled");
             break;
-            case "backend":
+            case "backend": 
               switch (strtolower($value)) {
-                case "cpdf":
+                case "cpdf": 
                   $success = true;
                 break;
                 case "pdflib":
@@ -283,10 +226,6 @@ $constants = array(
                 break;
               }
             break;
-            case "auth":
-              $success = !in_array($value, array("admin", "password"));
-              $message = ($success ? "OK" : "Password should be changed");
-            break;
           }
           echo 'class="' . ($success ? "ok" : "failed") . '"';
         }
@@ -296,5 +235,91 @@ $constants = array(
 
 </table>
 
+<h3>Installed fonts for the Cpdf Backend</h3>
+
+<?php 
+$fonts = Font_Metrics::get_font_families();
+$extensions = array("ttf", "afm", "afm.php", "ufm", "ufm.php");
+?>
+
+<button onclick="$('#clear-font-cache-message').load('controller.php?cmd=clear-font-cache')">Clear font cache</button>
+<span id="clear-font-cache-message"></span>
+
+<table class="setup">
+  <tr>
+    <th rowspan="2">Font family</th>
+    <th rowspan="2">Variants</th>
+    <th colspan="6">File versions</th>
+  </tr>
+  <tr>
+    <th>TTF</th>
+    <th>AFM</th>
+    <th>AFM cache</th>
+    <th>UFM</th>
+    <th>UFM cache</th>
+  </tr>
+  <?php foreach($fonts as $family => $variants) { ?>
+    <tr>
+      <td class="title" rowspan="<?php echo count($variants); ?>">
+        <?php 
+          echo $family; 
+          if ($family == DOMPDF_DEFAULT_FONT) echo ' <strong>(default)</strong>';
+        ?>
+      </td>
+      <?php 
+      $i = 0;
+      foreach($variants as $name => $path) {
+        if ($i > 0) {
+          echo "<tr>";
+        }
+        
+        echo "
+        <td>
+          <strong style='width: 10em;'>$name</strong> : $path<br />
+        </td>";
+        
+        foreach ($extensions as $ext) {
+          $v = "";
+          $class = "";
+          
+          if (is_readable("$path.$ext")) {
+            // if not cache file
+            if (strpos($ext, ".php") === false) {
+              $class = "ok";
+              $v = $ext;
+            }
+            
+            // cache file
+            else {
+              // check if old cache format
+              $content = file_get_contents("$path.$ext", null, null, null, 50);
+              if (strpos($content, '$this->')) {
+                $v = "DEPREC.";
+              }
+              else {
+                ob_start();
+                $d = include("$path.$ext");
+                ob_end_clean();
+                
+                if ($d == 1)
+                  $v = "DEPREC.";
+                else {
+                  $class = "ok";
+                  $v = $d["_version_"];
+                }
+              }
+            }
+          }
+          
+          echo "<td style='width: 2em; text-align: center;' class='$class'>$v</td>";
+        }
+        
+        echo "</tr>";
+        $i++;
+      }
+      ?>
+  <?php } ?>
+
+</table>
 
 <?php include("foot.inc"); ?>
