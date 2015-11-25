@@ -2753,3 +2753,20 @@ tr.Absent td.footable-visible.footable-last-column {
     width: 20px;
     text-align: center;
 }
+
+.members-count {
+  background-color: #999493;
+  border-radius: 30px;
+  padding: 7px;
+  color: #fff;
+  margin: 10px;
+  width: 144px;
+  display: inline-block;
+  text-align: center;
+   }
+
+#block-views-members-block-1{
+ background-color: #fff;
+ padding: 20px;
+ border: 1px solid rgb(204,204,204);
+ }

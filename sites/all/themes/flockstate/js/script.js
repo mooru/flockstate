@@ -206,6 +206,11 @@ if(location.hostname != "flockstate.com"){
   jQuery('.flockme').hide();
     }
 
+//Account expired alert
+if(location.href == "http://flockstate.dev/%3Cfront%3E"){
+  alert("Your FlockState account has expired. RENEW NOW for continued use. Thank you");
+        }
+    
 jQuery('li#menu-1437-1 a[href="#"]').eq(0).addClass('simptip-fade').addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip', 'Add records to database');
 
 jQuery('li#menu-1480-1 a[href="#"]').eq(0).addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip','Add service and attendance report');
@@ -328,8 +333,17 @@ jQuery('#edit-field-tel-no-und-1-value').on('blur', function() {
     }
 });
 
+$.protip({
+});
 
-
+jQuery('#edit-name-1').addClass('protip').attr(
+  "data-pt-title",'Enter the number of times present or absent that you want to search'
+  );
+  
+  jQuery('#edit-date-filter-1-value-datepicker-popup-1').addClass('protip').
+    attr('data-pt-title', 'Select date the guest first came to church');
+  jQuery('#edit_field_send_to_member_und_chosen').addClass('protip').attr('data-pt-title', 'Select members to send guest details to');
+  jQuery('#edit_field_fusers_und_chosen').addClass('protip').attr('data-pt-title', 'Select names of group leaders');
         }
     };
 })(jQuery);

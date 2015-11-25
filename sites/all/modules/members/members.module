@@ -1,10 +1,23 @@
 <?php
 
 function members_menu(){
-    $items['import/%/guidelines'] = array(
-    'title' => 'Guidelines',
+    $items['import/members/guidelines'] = array(
+    'title' => 'Members Guidelines',
     'page callback' => 'node_page_view',
     'page arguments' => array(node_load(906)),
+    'access callback' => TRUE,
+    'type' => MENU_LOCAL_TASK,
+    'weight' => -13
+
+    );
+
+
+
+
+    $items['import/%/visitors/guidelines'] = array(
+    'title' => 'Visitors Guidelines',
+    'page callback' => 'node_page_view',
+    'page arguments' => array(node_load(6009)),
     'access callback' => TRUE,
     'type' => MENU_LOCAL_TASK,
     'weight' => -13
@@ -677,3 +690,30 @@ function members_action_get_orig_node($node) {
  * This module allows to create a menu item that links to a file that is in the downloads folder
  */
 
+function members_user_login(&$edit, $account){
+  drupal_set_message(t('Hello @user'));
+}
+
+function members_views_data_alter(&$data) {
+
+  $data['users']['username'] = array(
+    'title' => t('Username'),
+    'help' => t("The user or author username."),
+    'real field' => 'name',
+    'field' => array(
+      'handler' => 'views_handler_field_user',
+      'click sortable' => TRUE,
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+      'title' => t('Name'),
+      'help' => t("The user's actual, raw, username.")
+    ),
+  );
+}
