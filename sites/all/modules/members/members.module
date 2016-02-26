@@ -1,7 +1,7 @@
 <?php
 
 function members_menu(){
-    $items['import/members/guidelines'] = array(
+    $items['import/%/guidelines'] = array(
     'title' => 'Members Guidelines',
     'page callback' => 'node_page_view',
     'page arguments' => array(node_load(906)),
@@ -11,10 +11,7 @@ function members_menu(){
 
     );
 
-
-
-
-    $items['import/%/visitors/guidelines'] = array(
+    $items['import/%/visitors_guidelines'] = array(
     'title' => 'Visitors Guidelines',
     'page callback' => 'node_page_view',
     'page arguments' => array(node_load(6009)),
@@ -24,25 +21,21 @@ function members_menu(){
 
     );
 
-
-
 return $items;
 }
 
 
 function members_form_members_node_form_alter(&$form, &$form_state, $form_id) {
-  dpm($form);
-  $form['field_surname']['und'][0]['value']['#placeholder'] = decode_entities('&#xf007;');
- $form['field_birthday']['und'][0]['value']['#placeholder'] = decode_entities('&#xf073;');
+// kpr($form);
+    $form['field_tel_no_']['und'][0]['value']['#maxlength'] = '10';
+    $form['field_tel_no_']['und'][1]['value']['#maxlength'] = '10';
 
   foreach($form['field_small_group']['und']['#options'] as &$option){
      $option = decode_entities($option);
-
   }
 
-
   unset($form['field_gender']['und']['#options']['_none']);
-drupal_set_title(t('Members'));
+  drupal_set_title(t('Members'));
 
 if(count($form['field_church_']['und']['#options']) > 1){
    $form['field_church_']['und']['#required'] = TRUE;
@@ -367,6 +360,11 @@ function members_feeds_presave(FeedsSource $source, $entity, $item) {
 
 // Visitors Attendance form alter
 function members_form_alter(&$form, &$form_state, $form_id) {
+
+    if($form_id == 'members_node_form'){
+        $form['#validate'][] = 'members_form_validate';
+    }
+    // dpm($form_state);
 // if($form_id == 'visitors_attendance_node_form'){
 //   $form['field_visitor'][LANGUAGE_NONE]['add_more']['#value'] = 'Add Visitors';
 // }
@@ -395,6 +393,12 @@ if(($form_id == 'views_form_members_church') || ($form_id == 'views_form_members
   unset($form['to']['views_send_to_name']['#options']['history_timestamp_pos_7']);
   unset($form['to']['views_send_to_name']['#options']['field_memail_pos_9']);
   unset($form['to']['views_send_to_name']['#options']['field_tel_no__pos_8']);
+  unset($form['to']['views_send_to_name']['#options']['path_pos_10']);
+  unset($form['to']['views_send_to_name']['#options']['comments_link_pos_11']);
+  unset($form['to']['views_send_to_name']['#options']['node_comment_statistics_comment_count_pos_12']);
+  unset($form['to']['views_send_to_name']['#options']['node_new_comments_pos_13']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_14']);
+  unset($form['to']['views_send_to_name']['#options']['nid_pos_15']);
    $form['to']['views_send_to_name']['#options']['node_title_pos_3'] = 'Name';
 
   unset($form['to']['views_send_to_mail']['#options']['counter_pos_2']);
@@ -408,6 +412,11 @@ if(($form_id == 'views_form_members_church') || ($form_id == 'views_form_members
   $form['to']['views_send_to_mail']['#options']['field_memail_pos_9'] = 'Email';
   unset($form['to']['views_send_to_mail']['#options']['node_title_pos_3']);
   unset($form['to']['views_send_to_mail']['#options']['field_tel_no__pos_8']);
+  unset($form['to']['views_send_to_mail']['#options']['path_pos_10']);
+  unset($form['to']['views_send_to_mail']['#options']['comments_link_pos_11']);
+  unset($form['to']['views_send_to_mail']['#options']['node_comment_statistics_comment_count_pos_12']);
+  unset($form['to']['views_send_to_mail']['#options']['node_new_comments_pos_13']);
+  unset($form['to']['views_send_to_mail']['#options']['nid_pos_14']);
    }
 
 if(($form_id == 'views_form_new_members_church') || ($form_id == 'views_form_new_members_all_guests') || ($form_id == 'views_form_new_members_group')){
@@ -470,6 +479,11 @@ if(($form_id == 'views_form_new_members_all_guests') || ($form_id == 'views_form
 return $form;
 }
 
+function members_form_validate($node, $form, &$form_state){
+   dpm($form_state);
+
+}
+
  function members_form_views_exposed_form_alter(&$form, $form_state) {
   $form['date_filter_1']['value']['#date_format'] = 'm/d/Y';
   $form['date_filter']['value']['#date_format'] = 'm/d/Y';
@@ -480,10 +494,12 @@ return $form;
   $form['date_filter_2']['value']['#date_format'] = 'm/d/Y';
   $form['tid']['#options'][53] = 'Absent '. decode_entities('&#xf00d;');
   $form['tid']['#options'][52] = 'Present '. decode_entities('&#xf00c;');
-   $form['tid']['#options'][259] = 'Absent '. decode_entities('&#xf00d;');
+     $form['tid']['#options'][259] = 'Absent '. decode_entities('&#xf00d;');
   $form['tid']['#options'][260] = 'Present '. decode_entities('&#xf00c;');
-
-
+     if(count($form['field_church__tid']['#options']) < 2){
+    unset($form['field_church__tid']);
+    unset($form['#info']['filter-field_church__tid']['label']);
+  }
 
 }
 
@@ -717,3 +733,17 @@ function members_views_data_alter(&$data) {
     ),
   );
 }
+//
+//function members_user_insert(&$edit, $account, $category){
+//    $domain = domain_get_domain();
+//
+//    $query = db_insert('domain_editor')
+//        ->fields(array('uid', 'domain_id'))
+//        ->values(array('uid' => $account->uid, 'domain_id' => $domain['domain_id']));
+//
+//    $query->execute();
+//
+//}
+
+
+

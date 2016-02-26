@@ -7,9 +7,9 @@ dependencies[] = field
 ; List files that contain classes
 files[] = views/slide_with_style_handler_filter_numeric.inc
 
-; Information added by Drupal.org packaging script on 2014-01-18
-version = "7.x-1.12"
+; Information added by Drupal.org packaging script on 2014-03-24
+version = "7.x-1.14"
 core = "7.x"
 project = "select_with_style"
-datestamp = "1390075711"
+datestamp = "1395700159"
 

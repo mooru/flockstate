@@ -32,7 +32,10 @@
           textField.attr('readonly', 'readonly'); // no editable field support for range slider
           pars[id].values = pars[id].values.slice(0, 2);
         }
-
+        else if (typeof pars[id].value === 'object') {
+          // Defensive programming. May happen with profile2.
+          pars[id].value = parseFloat(pars[id].value.value === '' ? pars[id].min : pars[id].value.value);
+        }
         slider.slider({
           animate    : true,
           orientation: pars[id].orientation, // 'horizontal' or 'vertical'

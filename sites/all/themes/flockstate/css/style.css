@@ -14,7 +14,8 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     line-height: 160%;
-}
+    }
+
 p {
     margin: 0 0 25px;
     padding: 0;
@@ -2709,7 +2710,7 @@ input[type="button"] {
     float: right;
 }
 
-a.flag.flag-action.flag-link-toggle.flag-processed {
+/* a.flag.flag-action.flag-link-toggle.flag-processed {
     background-color: steelblue;
     color: #fff;
     padding: 9px;
@@ -2721,8 +2722,41 @@ a.flag.unflag-action.flag-link-toggle.flagged.flag-processed {
     color: #ECEAEA;
     padding: 9px;
     text-decoration: none;
+} */
+
+/*
+a.flag.flag-action {
+background: url(../images/plus.png) no-repeat center center;
+border:none;
+width: 120px;
+height: 25px;
+margin-right: 20px;
+float: left;
+color: transparent;
+}
+a.flag.unflag-action {
+background: url(../images/minus.png) no-repeat center center;
+border:none;
+width: 120px;
+height: 25px;
+margin-right: 20px;
+float: left;
+color: transparent;
+}
+ */
+a.flag-action {
+  background-image: url('../images/check.png');
+  display:block;
+  text-indent:-9999em;
+  background-repeat: no-repeat;
 }
 
+a.unflag-action {
+  background-image: url('../images/minus.png');
+  display:block;
+  text-indent:-9999em;
+   background-repeat: no-repeat;
+}
 .form-item.form-type-checkbox.form-item-bundle-members--append::field-small-group{
     display:none !important;
 }
