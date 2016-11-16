@@ -1,5 +1,6 @@
 (function($) {
-  Drupal.behaviors.myBehavior = {
+
+    Drupal.behaviors.myBehavior = {
         attach: function(context, settings) {
 
 
@@ -9,17 +10,19 @@
                     jQuery('div.description', this).slideUp(250);
                 }).find('div.description')
                 .hide();
-jQuery('.view-ministry-service-report table').add('.page-church-report table').footable();
-jQuery('input.form-text').add('textarea.form-textarea').blur(function() {
+
+       jQuery('input.form-text').add('textarea.form-textarea').blur(function() {
             var value = $.trim( $(this).val() );
             $(this).val( value );
         });
+         
+         jQuery('.page-ministry-report table').add('.page-church-report table').add('.page-group-report table').add('.view-id-summary_of_guests table').footable();
 
             jQuery('.page-chart .page-header').append('<i class="fa fa-bar-chart-o"></i>');
             jQuery('.block-views h2').eq(0).append(' <i class="fa fa-filter"></i>');
             jQuery('#block-views-categories-block-1 h2').add('#block-views-categories-block-2 h2').append(' <i class="fa fa-tag"></i>');
-
-            jQuery("a[href*='sample.csv']").addClass('btn btn-primary btn-lg').text('Download Sample Template').prepend('<i class="fa fa-file"></i> ');
+         
+            jQuery("a[href*='sample.csv']").text('Download Sample Template').prepend('<i class="fa fa-file"></i> ');
 
             jQuery('#block-block-1 h2').append('<i class="fa fa-calendar"></i>');
 
@@ -28,7 +31,7 @@ jQuery('input.form-text').add('textarea.form-textarea').blur(function() {
             jQuery('.tabledrag-toggle-weight-wrapper').hide();
 
             //import template link
-            jQuery('.item-list ul li a[href*="template"]').addClass("btn-primary btn-lg btn").prepend('<i class="fa fa-cloud-download"></i> ');
+            jQuery('.item-list ul li a[href*="template"]').prepend('<i class="fa fa-cloud-download"></i> ');
 
             //ical button
             jQuery('.ical-icon img').removeAttr('src');
@@ -55,14 +58,14 @@ jQuery('input.form-text').add('textarea.form-textarea').blur(function() {
             xls.tooltip();
             txt.tooltip();
 
-
+          
             jQuery('#node-641 footer').remove();
 
             //Videos
             jQuery(".video-container").fitVids();
 
             jQuery('.node-pricing #tablefield-0').addClass('table table-hover table-striped table-bordered');
-
+          
             jQuery('.form-item-date-filter-min label').add('#views-exposed-form-visitors-attendance-page .views-widget-filter-date_filter label').add('#views-exposed-form-attendance-page .views-widget-filter-date_filter label').add('.form-item-date-filter-max label').add('#views-exposed-form-new-members-page .views-widget-filter-date_filter_1 label').add('.form-item-date-filter-1-min label').add('.form-item-date-filter-min label').add('.form-item-date-filter-1-min label').add('.form-item-date-filter-1-max label').append(' <i class="fa fa-calendar"></i>');
 
             jQuery('.marker').addClass('label label-info');
@@ -95,7 +98,7 @@ jQuery('input.form-text').add('textarea.form-textarea').blur(function() {
             jQuery('.views-field-nid a').tooltip();
             jQuery('.views-field-nid-1 a').tooltip();
 
-
+           
             jQuery('a[href*="#comment-form"]').attr('title', 'Add comments, prayer requests, needs, reasons for absence and any other necessary information');
             jQuery('a[href*="#comment-form"]').tooltip();
             jQuery('#views-form-members-page .views-field-comments-link a').tooltip();
@@ -104,7 +107,7 @@ jQuery('input.form-text').add('textarea.form-textarea').blur(function() {
                 'data-placement': 'top'
             });
             jQuery('#views-form-new-members-page .views-field-comments-link a').tooltip();
-
+            
             jQuery.fn.cleardefault = function() {
                 return this.focus(function() {
                     if (this.value == this.defaultValue) {
@@ -195,37 +198,37 @@ jQuery('input.form-text').add('textarea.form-textarea').blur(function() {
                 .eq(3).addClass('result-selected');
 
             //Descriptions
-            jQuery('<span class="description">Enable repeat checkbox to see recurrent date on <a href="#">yealy calendar</a></span>')
+            jQuery('<span class="description">Enable repeat checkbox to see recurrent date on Yealy calendar</span>')
                 .appendTo('#edit-field-birthday-prospects');
-            jQuery('<span class="description">Enable repeat checkbox to see recurrent date on <a href="../../calendar/month">Yearly Calendar</a></span>')
+            jQuery('<span class="description">Enable repeat checkbox to see recurrent date on Yearly Calendar</span>')
                 .appendTo('#edit-field-birthday');
-            jQuery('<span class="description">Enable repeat checkbox to see recurrent date on <a href="../../calendar-wedding-anniversary">Yearly Calendar</a></span>')
-                .appendTo('#edit-field-wedding-anniversary');
+            jQuery('<span class="description">Enable repeat checkbox to see recurrent date on Yearly Calendar</span>')
+                .appendTo('#edit-field-hwaf');
 
 if(location.hostname != "flockstate.com"){
   jQuery('.flockme').hide();
     }
-
-//Account expired alert
+    
+    //Account expired alert
 if(location.href == "http://flockstate.dev/%3Cfront%3E"){
   alert("Your FlockState account has expired. RENEW NOW for continued use. Thank you");
         }
 
-jQuery('li#menu-1437-1 a[href="#"]').eq(0).addClass('simptip-fade').addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip', 'Add records to database');
+// Navigation Tooltips
+jQuery('li#menu-1437-1 a[href="#"]').eq(0).addClass('protip').attr('data-pt-title', 'Add People');
 
-jQuery('li#menu-1480-1 a[href="#"]').eq(0).addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip','Add service and attendance report');
+jQuery('li#menu-1480-1 a[href="#"]').eq(0).addClass('protip').attr('data-pt-title', 'Add Reports');
 
-jQuery('li#menu-9943-1 a[href="#"]').eq(0).addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip','View Lists Of Content');
+jQuery('li#menu-9943-1 a[href="#"]').eq(0).addClass('protip').attr('data-pt-title', 'View Lists');
 
-jQuery('li#menu-10138-1 a[href="#"]').addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip','View birthdays and anniversaries');
+jQuery('li#menu-10138-1 a[href="#"]').addClass('protip').attr('data-pt-title', 'Birthdays And Anniversaries');
 
-jQuery('li#menu-9981-1 a').addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip','Charts and graphs of records');
+jQuery('li#menu-9981-1 a[href="#"]').addClass('protip').attr('data-pt-title', 'Charts Of Records');
 
-jQuery('li#menu-10206-1 a').addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip','Documentation');
+jQuery('li#menu-10632-1 a').addClass('protip').attr('data-pt-title', 'User Guide');
 
-jQuery('li#menu-6225-1 a').addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip','Frequently Asked Questions');
+jQuery('li#menu-2329-1 a').addClass('protip').attr('data-pt-title', 'Contact us for support');
 
-jQuery('li#menu-2329-1 a').addClass('simptip-position-right').addClass('simptip-info').addClass('simptip-smooth').attr('data-tooltip','Contact us for support');
 
  jQuery('.tabs ul.primary').addClass('nav nav-tabs');
     jQuery('.tabs ul.primary li').attr('role', 'presentation');
@@ -238,48 +241,45 @@ jQuery('.addmail').attr('title', 'Add Email')
         return false;
     });
 
-        jQuery('#searchbox').keyup(function(){
+     jQuery('#searchbox').keyup(function(){
                 var searchterm = jQuery('input#searchbox').val();
                 jQuery('table').trigger('footable_filter', {filter: searchterm});
         });
-
-// jQuery('a.flag.flag-action.flag-link-toggle.unflagged.flag-processed').html("<img src='sites/all/themes/flockstate/images/check.png' />");
-// jQuery('a.flag.unflag-action.flag-link-toggle.flag-processed').html("<img src='sites/all/themes/flockstate/images/x.png' />");
-
-   jQuery('input#edit-field-memail-und-0-email')
+jQuery('input#edit-field-memail-und-0-email')
    .add('input#edit-field-memail-und-1-email')
    .Setcase({caseValue : 'lower'});
 //Capitalize first word as user input
 //usage
-jQuery('input#edit-field-surname-und-0-value')
-.add('input#edit-field-name-und-0-value')
-.add('input#edit-field-role-und-0-value')
-.add('input#edit-field-group-name-und-0-value')
-.add('input#edit-field-class-und-0-value')
-.add('input#edit-field-member-occupation-und-0-value')
-.add('input#edit-field-address-und-0-value')
-.add('input#edit-field-church-und-0-value')
-.keyup(function() {
-   toUpper(this);
-});
+// jQuery('input#edit-field-surname-und-0-value')
+// .add('input#edit-field-name-und-0-value')
+// .add('input#edit-field-role-und-0-value')
+// .add('input#edit-field-group-name-und-0-value')
+// .add('input#edit-field-class-und-0-value')
+// .add('input#edit-field-member-occupation-und-0-value')
+// .add('input#edit-field-address-und-0-value')
+// .add('input#edit-field-church-und-0-value')
+// .keyup(function() {
+//    toUpper(this);
+// });
 
 
-//function
-function toUpper(obj) {
-  var mystring = obj.value;
-  var sp = mystring.split(' ');
-  var wl=0;
-  var f ,r;
-  var word = new Array();
-  for (i = 0 ; i < sp.length ; i ++ ) {
-    f = sp[i].substring(0,1).toUpperCase();
-    r = sp[i].substring(1).toLowerCase();
-    word[i] = f+r;
-  }
-  newstring = word.join(' ');
-  obj.value = newstring;
-  return true;
-}
+// //function
+// function toUpper(obj) {
+//   var mystring = obj.value;
+//   var sp = mystring.split(' ');
+//   var wl=0;
+//   var f ,r;
+//   var word = new Array();
+//   for (i = 0 ; i < sp.length ; i ++ ) {
+//     f = sp[i].substring(0,1).toUpperCase();
+//     r = sp[i].substring(1).toLowerCase();
+//     word[i] = f+r;
+//   }
+//   newstring = word.join(' ');
+//   obj.value = newstring;
+//   return true;
+// }
+
 
 jQuery('#edit-field-tel-no-und-0-value').on('blur', function() {
     var $this = $(this),
@@ -339,13 +339,23 @@ $.protip({
 });
 
 jQuery('#edit-name-1').addClass('protip').attr(
-  "data-pt-title",'Enter the number of times present or absent that you want to search'
+  "data-pt-title",'Enter the number of times present or absent to search for'
   );
-
+  
   jQuery('#edit-date-filter-1-value-datepicker-popup-1').addClass('protip').
     attr('data-pt-title', 'Select date the guest first came to church');
-  jQuery('#edit_field_send_to_member_und_chosen').addClass('protip').attr('data-pt-title', 'Select members to send guest details to');
-  jQuery('#edit_field_fusers_und_chosen').addClass('protip').attr('data-pt-title', 'Select names of group leaders');
+
+jQuery('td.views-field-privatemsg-link a').addClass('protip')
+.attr('data-pt-title', 'Send email about the follow up of this guest');
+
+jQuery('div#edit-field-new-member-value-wrapper label').addClass('protip').
+    attr('data-pt-title', 'Select Yes to view new members i.e. visitors moved to members');
+
+//jQuery('#edit-field-tel-no-und-1-value').add('#edit-field-tel-no-und-0-value').attr('maxLength', 10);
+
+
+
+
         }
     };
 })(jQuery);
