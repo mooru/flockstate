@@ -97,16 +97,6 @@
             jQuery('.views-field-edit-node a').tooltip();
             jQuery('.views-field-nid a').tooltip();
             jQuery('.views-field-nid-1 a').tooltip();
-
-           
-            jQuery('a[href*="#comment-form"]').attr('title', 'Add comments, prayer requests, needs, reasons for absence and any other necessary information');
-            jQuery('a[href*="#comment-form"]').tooltip();
-            jQuery('#views-form-members-page .views-field-comments-link a').tooltip();
-            jQuery("a[href*='#comment-form']").attr({
-                'data-toggle': 'tooltip',
-                'data-placement': 'top'
-            });
-            jQuery('#views-form-new-members-page .views-field-comments-link a').tooltip();
             
             jQuery.fn.cleardefault = function() {
                 return this.focus(function() {
